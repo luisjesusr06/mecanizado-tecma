@@ -2,12 +2,11 @@
   "name": "Mecanizado Tecma",
   "short_name": "Mecanizado",
   "lang": "es-CL",
-  "id": "./",
   "display": "standalone",
   "start_url": "./",
   "scope": "./",
-  "theme_color": "#1f4e79",
-  "background_color": "#ffffff",
+  "theme_color": "#1E7A78",
+  "background_color": "#FAF5EC",
   "icons": [
     {
       "src": "./icon.svg",
