@@ -3,619 +3,158 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#1f4e79">
-<meta name="description" content="Registro de piezas e incidencias de Mecanizado Tecma.">
+<meta name="theme-color" content="#1E7A78">
 <title>Mecanizado Tecma</title>
 <link rel="manifest" href="./manifest.json">
-<link rel="icon" type="image/svg+xml" href="./icon.svg">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
 <style>
-:root{font-family:Arial,Helvetica,sans-serif;font-size:18px;color:#182b3b;background:#fff;--azul:#1f4e79;--borde:#c6d2dc;--gris:#66717b;--amarillo:#f2c200;--naranjo:#f28c00;--verde:#2e9e44}
-*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0}button,input,select,textarea{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button,.boton{min-height:56px;padding:12px 18px;border:1px solid var(--borde);border-radius:10px;background:#fff;color:#173c5d;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;text-align:center}button:hover,.boton:hover{background:#edf4fa}button:disabled{opacity:.45;cursor:not-allowed}button.primario,.boton.primario{background:var(--azul);color:white;border-color:var(--azul)}button.peligro{color:#a51c1c;border-color:#cb8888}button:focus-visible,a:focus-visible,input:focus,textarea:focus,select:focus{outline:3px solid #006db6;outline-offset:3px}input,textarea,select{width:100%;min-height:56px;padding:12px;border:1px solid #8a9dac;border-radius:8px;background:white;color:#182b3b}input[type=checkbox]{width:28px;min-height:28px;height:28px;accent-color:var(--azul)}textarea{resize:vertical;line-height:1.5}label{display:block;font-weight:700}label>input,label>textarea,label>select{margin-top:8px;font-weight:400}h1{font-size:1.65rem;margin:0 0 16px}h2{font-size:1.25rem;margin:0 0 14px}h3{font-size:1.1rem;margin:0 0 12px}p{line-height:1.5;margin:10px 0}small,.secundario{font-size:.89rem;color:#4d6271}header{background:var(--azul);color:#fff;padding:18px max(18px,calc((100vw - 1100px)/2));display:flex;align-items:center;gap:12px}header strong{font-size:1.15rem}header .marca{font-size:1.5rem;border:2px solid #ffffff80;border-radius:8px;padding:5px 12px}header small{color:#e0ecf6;display:block;margin-top:4px}main{max-width:1140px;margin:auto;padding:24px 20px 130px}nav{position:fixed;z-index:5;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(4,1fr);background:white;border-top:2px solid var(--borde);padding:6px max(6px,calc((100vw - 1100px)/2)) calc(6px + env(safe-area-inset-bottom))}nav button{border:0;border-radius:8px;padding:7px 3px;flex-direction:column;gap:3px;font-size:.9rem}nav button span{font-size:1.35rem;line-height:1.2}nav button[aria-current=page]{background:#e6eff7;color:#173c5d;box-shadow:inset 0 3px var(--azul)}.fila{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.entre{justify-content:space-between}.crece{flex:1;min-width:0}.pila{display:grid;gap:16px}.rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px}.tarjeta{border:1px solid var(--borde);border-radius:12px;padding:20px;margin-bottom:16px;background:#fff}.tinte{background:#f3f7fb}.obra{padding-top:24px}.ofi{width:100%;display:block;text-align:left;margin:10px 0 14px;padding:20px}.ofi strong{font-size:1.1rem}.ofi .fila{margin-top:12px}.barra{height:10px;border-radius:6px;background:#dce4eb;overflow:hidden;margin-top:14px}.barra>span{display:block;height:100%;background:var(--verde)}.estado{display:inline-flex;gap:7px;align-items:center;font-size:.89rem;font-weight:700;color:#263e4e}.punto{width:13px;height:13px;min-width:13px;border-radius:50%;background:var(--gris);border:1px solid #0003}.estado.proceso .punto{background:var(--amarillo)}.estado.pendiente .punto{background:var(--naranjo)}.estado.listo .punto{background:var(--verde)}.etiqueta{font-size:.8rem;padding:5px 8px;border-radius:5px;background:#eef2f5;color:#425565;display:inline-block}.chips{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.chips button{padding:10px 14px}.chips button.activo{background:var(--azul);color:#fff}.elemento{display:flex;gap:16px;align-items:center;justify-content:space-between}.abrir{border:0;padding:0;display:block;text-align:left;flex:1;color:#182b3b;min-width:0;background:transparent;font-weight:400}.abrir strong{font-size:22px;display:inline-block;margin-right:10px}.descripcion{display:block;font-size:.94rem;line-height:1.4;margin:8px 0;overflow-wrap:anywhere}.piezas{display:flex;gap:8px;flex-wrap:wrap}.pieza{min-width:90px;min-height:70px;display:flex;flex-direction:column;gap:4px}.pieza.completa{background:#e8f5eb;color:#165726;border:2px solid #2e9e44}.pieza b{font-size:1.12rem}.vacio{text-align:center;padding:36px 18px;background:#f3f7fb;border:1px dashed #a8bac9;border-radius:12px}.aviso{padding:14px 16px;border:1px solid #b7cddd;border-radius:8px;background:#edf5fc;line-height:1.5}.bien{background:#edf8ef;border-color:#7fb68a;color:#185b29}.mal{background:#fff0ee;border-color:#d39891;color:#8a231b}.incierta{background:#fff5c2!important;border-color:#b38c00!important}.campo{margin:16px 0}.contador{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0}.contador>span{min-width:68px}.contador output{min-width:42px;text-align:center;font-size:1.25rem;font-weight:bold}.contador button{min-width:56px;padding:10px}.paso{display:flex;gap:12px;align-items:center;margin-bottom:16px}.paso b{display:grid;place-items:center;border-radius:50%;width:42px;height:42px;flex:none;color:white;background:var(--azul)}.paso h2{margin:0}.tabla{overflow:auto}table{border-collapse:collapse;width:100%;min-width:620px}th,td{padding:8px;text-align:left;border-bottom:1px solid var(--borde)}th{font-size:.9rem}td input{min-width:85px}td:nth-child(1){width:130px}td:nth-child(2){width:105px}td:nth-child(4){width:100px}.historia{padding:12px 0;border-bottom:1px solid #e1e7ec;line-height:1.5;overflow-wrap:anywhere}.resuelta{background:#f3f4f5;color:#596772}.incidencia{border-left:5px solid var(--naranjo)}summary{min-height:56px;padding:16px 0;cursor:pointer}.menu{position:relative;margin:16px 0}.menu summary{min-height:56px;cursor:pointer;font-weight:bold;padding:16px;background:#edf4fa;border-radius:8px}.menu .pila{padding:12px 0}.menu button{justify-content:flex-start}.fecha{max-width:260px}#mensaje{position:fixed;z-index:20;bottom:calc(100px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(94%,650px);padding:12px 16px;background:#173348;color:#fff;border-radius:12px;box-shadow:0 5px 24px #0003;display:flex;align-items:center;gap:12px}#mensaje[hidden],#actualizacion[hidden],#problema[hidden]{display:none}#mensaje span{flex:1}#mensaje button{color:#173348;flex-shrink:0}#actualizacion{width:100%;border-radius:0;background:#fff1b3;color:#513a00;border-color:#c9a547}#problema{border-radius:0;margin:0}dialog{border:0;border-radius:14px;padding:24px;width:min(94vw,620px);max-height:90dvh;color:#182b3b;box-shadow:0 20px 80px #0006}dialog::backdrop{background:#132c4077}dialog .acciones{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;margin-top:24px}dialog .acciones button{flex:1}.separador{margin-top:26px;padding-top:24px;border-top:1px solid var(--borde)}.botones{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}.resumen{min-height:360px;font-family:inherit}.check{display:flex;align-items:center;gap:10px;min-height:56px}.romper{overflow-wrap:anywhere}
-@media(max-width:640px){main{padding:20px 12px 125px}header{padding:14px 16px}.tarjeta{padding:16px}.elemento{align-items:stretch;flex-direction:column}.piezas{display:grid;grid-template-columns:repeat(3,1fr)}.pieza{min-width:0}.entre>h1{margin-bottom:0}h1{font-size:1.4rem}.contador{gap:8px}nav button{font-size:.8rem}.fila .primario{max-width:100%}dialog{padding:18px}}
+:root{--cream:#FAF5EC;--ink:#3A2E25;--teal:#1E7A78;--grey:#A89F94;--amber:#F2B233;--coral:#E8684A;--green:#3E9E5B;--line:#DED7CD}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:20px/1.5 system-ui,sans-serif}button,input,textarea,select{font:inherit}button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{opacity:.5;cursor:default}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:4px solid var(--amber);outline-offset:4px}h1,h2,h3,p{margin:0 0 16px}h1,h2{font-size:28px;line-height:1.25}h3{font-size:23px}small,.small{font-size:17px}.muted{color:#74685D}.brand{letter-spacing:.16em;font-size:14px;font-weight:800;color:var(--teal);margin-bottom:24px}.shell{max-width:1000px;margin:auto;padding:32px 24px 70px}header{margin-bottom:28px}.greeting{font-size:clamp(30px,5vw,40px)}.card{background:white;border:1px solid #EEE7DD;border-radius:20px;padding:24px;box-shadow:0 5px 18px #3a2e2507;margin-bottom:18px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:64px;padding:14px 24px;border:2px solid transparent;border-radius:16px;background:var(--teal);color:white;font-weight:700;text-decoration:none;line-height:1.3}.secondary{background:#fff;color:var(--teal);border-color:var(--line)}.danger{background:#A93824;color:#fff}.wide{width:100%}.actions{display:flex;gap:14px;flex-wrap:wrap;margin:22px 0}.actions>*{flex:1}.back{margin-bottom:28px}.quiet{display:inline-block;border:0;background:transparent;color:#665B51;text-decoration:underline;padding:18px 8px;min-height:60px;font-size:18px}.settings{margin-top:58px}.empty{text-align:center;padding:38px 20px;color:#74685D}.empty-icon{display:block;font-size:44px;margin-bottom:14px}label{display:block;font-weight:650;margin:16px 0 8px}input,textarea,select{width:100%;background:white;border:2px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);min-height:62px}textarea{resize:vertical;min-height:180px}.search{position:relative;margin:26px 0}.search span{position:absolute;left:18px;top:18px}.search input{padding-left:56px}.search-status{margin:16px 4px}.row{display:flex;align-items:center;gap:18px;justify-content:space-between}.grow{flex:1;min-width:0}.ref{font-size:26px;font-weight:800}.hero-ref{font-size:44px}.qty{font-size:22px;color:#74685D;font-weight:500}.tap{display:block;width:100%;text-align:left;color:inherit}.element{border:1px solid #E7DFD4}.element .muted{margin-top:4px}.element .summary{margin-top:10px;font-size:18px}.status{display:inline-flex;align-items:center;gap:8px;font-size:17px;font-weight:750;border-radius:12px;padding:7px 11px;white-space:nowrap}.status:before{content:"";width:11px;height:11px;flex-shrink:0;border-radius:50%;background:var(--state)}.s0{--state:var(--grey);background:#F0ECE6}.s1{--state:var(--amber);background:#FFF1CD}.s2{--state:var(--coral);background:#FFE4DC}.s3{--state:var(--green);background:#E1F2E5}.count{text-align:right;font-size:17px;margin-top:6px}.ofi-link{display:block;width:100%;background:none;border:0;color:inherit;text-align:left;padding:20px 0;min-height:90px}.ofi-link+.ofi-link{border-top:1px solid var(--line)}progress{display:block;width:100%;height:12px;margin-top:14px;border:0;border-radius:99px;overflow:hidden;background:#EEE9E1;accent-color:var(--teal)}progress::-webkit-progress-bar{background:#EEE9E1;border-radius:99px}progress::-webkit-progress-value{background:var(--teal);border-radius:99px}progress::-moz-progress-bar{background:var(--teal);border-radius:99px}.tabs{display:flex;gap:12px;margin:28px 0}.tabs button{flex:1}.tabs .active{background:var(--teal);color:white;border-color:var(--teal)}.pieces{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:16px 0 28px}.piece{min-height:120px;border:2px solid var(--line);border-radius:20px;background:white;color:var(--ink);padding:20px 14px;transition:background-color .2s,border-color .2s,transform .2s;text-align:center;overflow-wrap:anywhere}.piece:active{transform:scale(.97)}.piece b{display:block;font-size:22px}.piece .mark{font-size:30px;display:block;line-height:1.2;margin-bottom:7px}.piece small{display:block;margin-top:6px}.piece.lista{background:#E1F2E5;border-color:var(--green)}.piece.detenida{background:#FFE4DC;border-color:var(--coral)}.selecting .piece{outline:3px dashed var(--coral);outline-offset:2px}.notice{padding:20px;border-radius:16px;background:#FFF0C4;margin:20px 0}.notice p:last-child{margin:0}.success{background:#E1F2E5;color:#24683A}.error{background:#FFE4DC;color:#942F20}.note{border-left:6px solid var(--amber);background:#FFF2CD}.step{display:flex;align-items:center;gap:14px;margin-bottom:18px}.step span{display:grid;place-items:center;background:#E4F0EB;color:var(--teal);width:44px;height:44px;flex-shrink:0;border-radius:50%;font-weight:800}.step h2{margin:0;font-size:24px}.preview-line{padding:16px 0;border-bottom:1px solid var(--line)}.fields{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}.counter{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0}.counter-controls{display:flex;align-items:center;gap:12px}.counter button{min-width:60px;padding:10px}.counter output{min-width:35px;text-align:center;font-weight:750}.divider{border:0;border-top:1px solid var(--line);margin:26px 0}dialog{width:min(620px,calc(100% - 28px));border:0;border-radius:24px;padding:28px;background:var(--cream);color:var(--ink);max-height:90dvh;overflow:auto;box-shadow:0 20px 80px #0003}dialog::backdrop{background:#30251dcc}dialog .actions{margin-bottom:0}.toast{position:fixed;z-index:20;bottom:24px;left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100% - 32px);background:var(--ink);color:#fff;padding:16px 24px;border-radius:18px;box-shadow:0 6px 25px #0002;text-align:center;pointer-events:none}.update{display:block;width:100%;border:0;border-radius:0;background:#FFF0C4;color:var(--ink);padding:18px;font:700 18px/1.4 system-ui;min-height:60px}.hidden,[hidden]{display:none!important}.wrap{overflow-wrap:anywhere}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:650px){.shell{padding:24px 16px 50px}.card{padding:20px}.pieces{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.row{align-items:flex-start;flex-wrap:wrap;gap:12px}.count{text-align:left}.element .grow{flex-basis:100%}.actions{flex-direction:column}.fields{grid-template-columns:1fr}.btn{padding:14px 18px}.counter{gap:6px}.counter-controls{gap:8px}dialog{padding:22px}.search input{font-size:18px}.status{white-space:normal}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<header><span class="marca" aria-hidden="true">M</span><div><strong>Mecanizado Tecma</strong><small id="conexion">Registro de producción</small></div></header>
-<button id="actualizacion" hidden>Hay una actualización disponible — tocar para actualizar</button>
-<div id="problema" class="aviso mal" role="alert" hidden></div>
-<main id="app"></main>
-<nav aria-label="Navegación principal">
-<button data-nav="obras"><span aria-hidden="true">▦</span>Obras</button>
-<button data-nav="hoy"><span aria-hidden="true">◷</span>Hoy</button>
-<button data-nav="nueva"><span aria-hidden="true">+</span>Nueva OFI</button>
-<button data-nav="mas"><span aria-hidden="true">☰</span>Más</button>
-</nav>
-<div id="mensaje" role="status" hidden><span></span><button id="deshacer" hidden>Deshacer</button></div>
-<dialog id="dialogo" aria-labelledby="tituloDialogo"><form id="formDialogo"><h2 id="tituloDialogo"></h2><div id="cuerpoDialogo"></div><div class="acciones"><button type="button" id="cancelarDialogo">Cancelar</button><button class="primario" id="aceptarDialogo" type="submit">Guardar</button></div></form></dialog>
-<input id="archivoRespaldo" type="file" accept=".json,application/json" hidden>
+<button id="update" class="update" hidden>Hay una mejora disponible — tocar para actualizar</button>
+<main id="app" class="shell"></main>
+<dialog id="dialog" aria-labelledby="dialog-title"></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<noscript>Para abrir Mecanizado Tecma, activa JavaScript en Chrome.</noscript>
 <script>
 'use strict';
-const VERSION_APP='1.0.0',CLAVE='mecanizado_tecma_v1',TIPOS=['M','H','PF'];
-const NOMBRES={M:['marco','marcos'],H:['hoja','hojas'],PF:['paño fijo','paños fijos']};
-const ESTADOS={no:'No iniciado',proceso:'En proceso',pendiente:'Listo con pendiente',listo:'Listo'};
-const TEXTO_CONVERSION=`Transcribe la carátula de la foto adjunta (Orden de Fabricación de Tecma). Responde SOLO con un bloque de código, sin ningún texto antes ni después, con este formato exacto:
-OBRA;<nombre de la obra>
-REFERENCIA;<texto de la fila REFERENCIA, vacío si no hay>
-OFI;<solo el número de OFI>
-OP;<número de OP>
-FECHA;<fecha en formato dd-mm-aaaa>
-COLOR;<texto de COLOR ALUMINIO>
-TOTAL;<número del recuadro amarillo junto a VENTANAS TECHNAL o ELEMENTOS>
-Luego una línea por cada fila de la tabla que tenga referencia, en el mismo orden:
-<REFERENCIA>;<CANT>;<DESCRIPCION>
-Reglas: copia los textos tal como aparecen, en mayúsculas; no uses punto y coma dentro de las descripciones (reemplázalo por coma); no inventes filas ni datos; si algo es ilegible escribe ?? en su lugar; incluye todas las filas.`;
-const $=s=>document.querySelector(s),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const copia=x=>JSON.parse(JSON.stringify(x)),uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2);
-const limpia=s=>String(s??'').trim().replace(/\s+/g,' '),obraNormal=s=>limpia(s).toUpperCase(),refNormal=s=>limpia(s).toUpperCase();
-const ofiNormal=s=>String(s??'').toUpperCase().replace(/OFI/g,'').replace(/\s/g,'').replace(/^0+(?=\d)/,'');
-const entero=(n,min=0)=>Number.isSafeInteger(n)&&n>=min;
-function hoy(d=new Date()){return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')}
-function fechaISO(s){s=String(s??'').trim();if(/^\d{2}-\d{2}-\d{4}$/.test(s))s=s.split('-').reverse().join('-');if(!/^\d{4}-\d{2}-\d{2}$/.test(s))return '';const d=new Date(s+'T12:00:00');return !isNaN(d)&&hoy(d)===s?s:''}
-function fecha(s){const x=fechaISO(String(s).slice(0,10));return x?x.split('-').reverse().join('-'):String(s||'Sin fecha')}
-function hora(s){return new Date(s).toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit',hour12:false})}
-function diaHistoria(s){return hoy(new Date(s))}
-function edad(s){const a=hoy().split('-').map(Number),b=s.slice(0,10).split('-').map(Number);const n=Math.round((Date.UTC(a[0],a[1]-1,a[2])-Date.UTC(b[0],b[1]-1,b[2]))/86400000);return n===0?'hoy':n===1?'hace 1 día':n>1?`hace ${n} días`:'fecha futura'}
-function piezas(n,t){return `${n} ${NOMBRES[t][n===1?0:1]}`}
-function detenidas(e,t){return e.incidencias.filter(i=>i.tipo==='detenida'&&i.pieza===t&&!i.fechaResolucion).reduce((s,i)=>s+i.cantidad,0)}
-function estado(e){const abiertas=e.incidencias.some(i=>!i.fechaResolucion);if(TIPOS.every(t=>e.listos[t]===e.total[t])&&!abiertas&&TIPOS.some(t=>e.total[t]>0))return 'listo';if(TIPOS.every(t=>e.listos[t]===0)&&!abiertas)return 'no';if(abiertas&&TIPOS.every(t=>e.listos[t]+detenidas(e,t)===e.total[t]))return 'pendiente';return 'proceso'}
-const marca=s=>`<span class="estado ${s}"><span class="punto" aria-hidden="true"></span>${ESTADOS[s]}</span>`;
-const vacio=()=>({version:1,ofis:[],elementos:[],historial:[]});
-let db=vacio(),guardado=null,bloqueado=false,temporizador,undo=null,registroSW=null;
-const ui={pagina:'obras',ofiId:null,elementoId:null,filtro:'todos',busca:'',archivadas:false,dia:hoy(),borrador:null,texto:'',resumenId:''};
-
-function verificar(d){
- if(!d||d.version!==1||!Array.isArray(d.ofis)||!Array.isArray(d.elementos)||!Array.isArray(d.historial))throw Error('El respaldo no tiene el formato de Mecanizado Tecma.');
- const ids=new Set(),claves=new Set(),refs=new Set(),incIds=new Set();
- const str=v=>typeof v==='string',momento=v=>str(v)&&!isNaN(Date.parse(v));
- for(const o of d.ofis){
-  const clave=obraNormal(o.obra)+'\n'+ofiNormal(o.ofi);
-  if(!str(o.id)||!o.id||ids.has(o.id)||claves.has(clave)||!['obra','referencia','ofi','op','fecha','color'].every(k=>str(o[k]))||!obraNormal(o.obra)||!ofiNormal(o.ofi)||!entero(o.totalCaratula)||!momento(o.creada)||typeof o.archivada!=='boolean')throw Error('Hay datos de OFI inválidos o repetidos.');
-  ids.add(o.id);claves.add(clave);o.obra=obraNormal(o.obra);o.ofi=ofiNormal(o.ofi);
- }
- const elementIds=new Set();
- for(const e of d.elementos){
-  const clave=e.ofiId+'\n'+refNormal(e.ref);
-  if(!str(e.id)||!e.id||elementIds.has(e.id)||!ids.has(e.ofiId)||!str(e.ref)||!refNormal(e.ref)||refs.has(clave)||!str(e.desc)||!str(e.nota)||!entero(e.cant,1)||!e.total||!e.listos||!Array.isArray(e.incidencias))throw Error('Hay elementos inválidos o referencias repetidas.');
-  elementIds.add(e.id);refs.add(clave);
-  for(const i of e.incidencias){
-   if(!str(i.id)||!i.id||incIds.has(i.id)||!['detenida','externa'].includes(i.tipo)||!fechaISO(i.fechaInicio)||!(i.fechaResolucion===null||momento(i.fechaResolucion))||(i.motivo!==undefined&&!str(i.motivo))||(i.comentario!==undefined&&!str(i.comentario))||(i.tipo==='detenida'&&(!TIPOS.includes(i.pieza)||!entero(i.cantidad,1))))throw Error('Hay una incidencia inválida.');
-   incIds.add(i.id);
+const VERSION='v2', KEY='mecanizado_tecma_v2';
+const CONVERSION="Transcribe la carátula de la foto adjunta (Orden de Fabricación de Tecma) y calcula las piezas de cada elemento. Responde SOLO con un bloque de código, sin texto antes ni después, con este formato:\nOBRA;<nombre de la obra>\nREFERENCIA;<texto de la fila REFERENCIA, vacío si no hay>\nOFI;<solo el número de OFI>\nOP;<número de OP>\nFECHA;<dd-mm-aaaa>\nCOLOR;<COLOR ALUMINIO>\nTOTAL;<número del recuadro amarillo>\nLuego una línea por cada fila con referencia, en el mismo orden:\n<REFERENCIA>;<CANT>;<DESCRIPCION>;<MARCOS>;<HOJAS>;<PAÑOS FIJOS>\nMARCOS, HOJAS y PAÑOS FIJOS son POR UNIDAD (no multipliques por CANT). Reglas:\n1. Cada ventana o puerta que tiene hojas = 1 marco + sus hojas.\n2. Cuando hay números tipo \"2-1\", \"2-2\", \"6-4\", \"4-4\" o \"2/2\" después del sistema (GY, GTI, G6, SLIM SLIDE, etc.), el PRIMER número es la cantidad de hojas: GY 2-1 = 1 marco + 2 hojas; GTI 6-4 = 1 marco + 6 hojas.\n3. FYA PROYECCION, FYA OB, FYA ABATIR, PTA VENT ABATIR, PUERTA, TITANE PUERTA = 1 marco + 1 hoja (si dice \"N HOJAS\", son N hojas).\n4. Si dice un número delante, se repite: \"FYA 2 PROYECCION\" = 2 marcos + 2 hojas.\n5. FIJO, FIJOS, FIJO INF, FIJO LAT, PAÑO FIJO = paño fijo (1 por cada uno; \"FYA 3 FIJOS\" = 3 paños fijos, sin marcos ni hojas aparte).\n6. Si hay \"+\", suma cada parte: \"FYA 2 PROYECCION + FIJO INF\" = 2;2;1. \"PUERTA EXTERIOR + FIJO\" = 1;1;1.\n7. Un paréntesis como \"(4 MOVIL + 2 FIJOS)\" dentro de un corredero describe sus hojas (móviles y fijas), no paños fijos aparte.\n8. No suman piezas: MONTANTE, ANTEPECHO, REFORZADO, BIG, JUMBO, HM=, RIEL OCULTO, RIELES, EXTENSION RIEL, CRISTAL, TEMPLADO, FOSCO, NEW PROFILE, SILICONA, BISAGRAS, medidas.\n9. Si no estás seguro de las piezas, pon tu mejor estimación y agrega ;REVISAR al final de esa línea.\n10. Copia los textos tal como aparecen, en mayúsculas; no uses punto y coma dentro de descripciones (usa coma); no inventes filas; si algo es ilegible escribe ??.\nEjemplo de líneas correctas:\nV10;1;FYA OB 1 HOJA CRISTAL FOSCO HM=825;1;1;0\nV12A;1;GY 2-1 MONTANTE BIG HM= 1000;1;2;0\nV14.1;1;FYA FIJO;0;0;1\nV16;1;PUERTA EXTERIOR + FIJO;1;1;1\nV16;1;GTI 6-4 (4 MOVIL + 2 FIJOS) RIEL OCULTO;1;6;0";
+const $=s=>document.querySelector(s);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=v=>String(v??'').trim().replace(/\s+/g,' ').toUpperCase();
+const normOfi=v=>norm(v).replace(/OFI/g,'').replace(/\s/g,'').replace(/^0+(?=\d)/,'');
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
+const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;};
+const day=v=>/^\d{4}-\d{2}-\d{2}/.test(v||'')?v.slice(0,10).split('-').reverse().join('-'):String(v||'');
+const fresh=()=>({version:2,ofis:[],elementos:[]});
+const types=['M','H','PF'], names={M:['marco','marcos'],H:['hoja','hojas'],PF:['paño fijo','paños fijos']};
+const states=['Sin empezar','En proceso','Con pendiente','Listo'];
+let data=fresh(),blocked=false,page={name:'home'},tab='missing',query='',preview=null,stopMode=false,correction=null,backupFile=null;
+let loadError='';
+function validInt(n,min=0,max=1000){return Number.isInteger(n)&&n>=min&&n<=max;}
+function validate(d){
+  const bad=()=>{throw Error('Esta copia no tiene el formato de Mecanizado Tecma v2.');};
+  if(!d||d.version!==2||!Array.isArray(d.ofis)||!Array.isArray(d.elementos))bad();
+  const ids=new Set(),ofis=new Set(),pairs=new Set();
+  const id=v=>{if(typeof v!=='string'||!v||ids.has(v))bad();ids.add(v);};
+  const str=v=>{if(typeof v!=='string')bad();};
+  const date=v=>{if(v!=null&&typeof v!=='string')bad();};
+  d.ofis.forEach(o=>{id(o.id);ofis.add(o.id);['obra','referencia','ofi','op','fecha','color','creada'].forEach(k=>str(o[k]));if(!norm(o.obra)||!normOfi(o.ofi))bad();o.obra=norm(o.obra);o.ofi=normOfi(o.ofi);const pair=JSON.stringify([o.obra,o.ofi]);if(pairs.has(pair))bad();pairs.add(pair);if(o.totalCaratula!==null&&!validInt(o.totalCaratula,0,1000000))bad();});
+  d.elementos.forEach(e=>{id(e.id);if(!ofis.has(e.ofiId)||!validInt(e.cant,1)||typeof e.revisar!=='boolean'||!Array.isArray(e.piezas)||!Array.isArray(e.faltas))bad();str(e.ref);str(e.desc);if(!norm(e.ref)||e.piezas.length>20000)bad();const slots=new Set();e.piezas.forEach(p=>{id(p.id);if(!types.includes(p.tipo)||!validInt(p.unidad,1,e.cant)||!validInt(p.numero,1)||!['pendiente','lista','detenida'].includes(p.estado))bad();const slot=[p.unidad,p.tipo,p.numero].join(':');if(slots.has(slot))bad();slots.add(slot);date(p.motivo);date(p.fechaDetenida);date(p.fechaLista);});e.faltas.forEach(f=>{id(f.id);str(f.texto);str(f.fecha);if(typeof f.resuelta!=='boolean')bad();date(f.fechaResuelta);});});
+  return d;
+}
+try{const saved=localStorage.getItem(KEY);if(saved)data=validate(JSON.parse(saved));}catch(e){blocked=true;loadError='No pude leer el avance guardado. No lo borraré. Puedes recuperar una copia desde Ajustes.';}
+function save(change,replace=false){
+  try{if(blocked&&!replace)throw Error('Primero recupera una copia desde Ajustes. El avance anterior sigue guardado.');const next=replace?change:JSON.parse(JSON.stringify(data));if(!replace)change(next);localStorage.setItem(KEY,JSON.stringify(next));data=next;blocked=false;return true;}catch(e){message('No se pudo guardar',e.name==='QuotaExceededError'?'Se llenó el espacio. Guarda una copia de seguridad y libera espacio antes de seguir.':e.message);return false;}
+}
+const element=()=>data.elementos.find(e=>e.id===page.id);
+const openNotes=e=>e.faltas.filter(f=>!f.resuelta);
+function status(e){const ps=e.piezas,notes=openNotes(e).length;if(!ps.length)return notes?2:0;if(ps.every(p=>p.estado==='pendiente')&&!notes)return 0;if(ps.every(p=>p.estado==='lista')&&!notes)return 3;if(!ps.some(p=>p.estado==='pendiente')&&(notes||ps.some(p=>p.estado==='detenida')))return 2;return 1;}
+const ready=e=>e.piezas.filter(p=>p.estado==='lista').length;
+const badge=e=>`<span class="status s${status(e)}">${states[status(e)]}</span>`;
+function summary(counts){return types.filter(t=>counts[t]).map(t=>`${counts[t]} ${names[t][counts[t]===1?0:1]}`).join(' · ')||'Sin piezas · revisar';}
+function counts(e,u){const c={M:0,H:0,PF:0};e.piezas.filter(p=>u==null||p.unidad===u).forEach(p=>c[p.tipo]++);return c;}
+function pieceLabel(e,p){const n=e.piezas.filter(x=>x.unidad===p.unidad&&x.tipo===p.tipo).length;const s=names[p.tipo][0];return s[0].toUpperCase()+s.slice(1)+(n>1?' '+p.numero:'');}
+function btn(label,action,cls='secondary',attrs=''){return `<button class="btn ${cls}" data-action="${action}" ${attrs}>${label}</button>`;}
+const back=()=>btn('← Volver','back','secondary back');
+function toast(t){$('#toast').textContent=t;$('#toast').hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').hidden=true,2800);}
+function modal(title,body){const d=$('#dialog');if(d.open)d.close();d.innerHTML=`<h2 id="dialog-title">${esc(title)}</h2>${body}`;d.showModal();}
+function close(){if($('#dialog').open)$('#dialog').close();}
+function message(title,text){modal(title,`<p>${esc(text)}</p>${btn('Entendido','close','wide')}`);}
+function go(name,id){close();stopMode=false;page={name,id};history.pushState(page,'');render();window.scrollTo(0,0);}
+history.replaceState(page,'');
+addEventListener('popstate',e=>{close();page=e.state?.name?e.state:{name:'home'};stopMode=false;render();});
+function elementCard(e,search=false){const o=data.ofis.find(o=>o.id===e.ofiId);return `<button class="card tap element" data-action="element" data-id="${esc(e.id)}"><div class="row"><div class="grow"><div class="ref">${esc(e.ref)} ${e.cant>1?`<span class="qty">×${e.cant}</span>`:''}</div><div class="muted wrap">${esc(search?o.obra+' · OFI '+o.ofi:e.desc)}</div>${search?'':`<div class="summary">${esc(summary(counts(e)))}</div>`}</div><div>${badge(e)}<div class="count">${ready(e)} de ${e.piezas.length} listas</div></div></div></button>`;}
+function ofiProgress(id){const es=data.elementos.filter(e=>e.ofiId===id);let done=0,total=0;es.forEach(e=>{total+=e.cant;if(openNotes(e).length)return;for(let u=1;u<=e.cant;u++){const ps=e.piezas.filter(p=>p.unidad===u);if(ps.length&&ps.every(p=>p.estado==='lista'))done++;}});return {done,total};}
+function renderHome(){const d=new Date().toLocaleDateString('es-CL',{weekday:'long',day:'numeric',month:'long'});return `<div class="brand">TECMA / MECANIZADO</div><header><h1 class="greeting">Hola, Jorge 👋</h1><p class="muted">${esc(d[0].toUpperCase()+d.slice(1))}</p></header><label class="sr-only" for="search">Buscar obra o elemento</label><div class="search"><span aria-hidden="true">🔎</span><input id="search" type="search" placeholder="Buscar obra o elemento (ej. V16)" value="${esc(query)}" autocomplete="off"></div><div id="results"></div>${btn('➕ Cargar carátula','load','wide')}<section style="margin-top:32px">${data.ofis.length?Array.from(new Set(data.ofis.map(o=>o.obra))).map(obra=>`<div class="card"><h2 class="wrap">${esc(obra)}</h2>${data.ofis.filter(o=>o.obra===obra).map(o=>{const p=ofiProgress(o.id);return `<button class="ofi-link" data-action="ofi" data-id="${esc(o.id)}"><div class="row"><strong>OFI ${esc(o.ofi)}</strong><span>${p.done} de ${p.total} listos</span></div><progress aria-label="Avance OFI ${esc(o.ofi)}" value="${p.done}" max="${p.total||1}"></progress></button>`;}).join('')}</div>`).join(''):'<div class="empty"><span class="empty-icon">☀️</span><p>Aquí aparecerán tus obras.<br>Comienza cargando una carátula.</p></div>'}</section><div class="settings">${btn('⚙️ Ajustes','settings','quiet')}</div>`;}
+function searchResults(){const root=$('#results');if(!root)return;const q=norm(query);if(!q){root.innerHTML='';return;}const matches=data.elementos.filter(e=>{const o=data.ofis.find(o=>o.id===e.ofiId);return norm(e.ref+' '+o.obra+' OFI '+o.ofi).includes(q);});root.innerHTML=`<p class="search-status muted" role="status">${matches.length?matches.length+' resultados':'No encontré ese elemento u obra.'}</p>${matches.map(e=>elementCard(e,true)).join('')}`;}
+function renderOfi(){const o=data.ofis.find(o=>o.id===page.id);if(!o)return back()+'<p>Esta OFI ya no está cargada.</p>';const es=data.elementos.filter(e=>e.ofiId===o.id),shown=es.filter(e=>tab==='all'||status(e)!==3);return `${back()}<header><h1 class="wrap">${esc(o.obra)}</h1><p>OFI ${esc(o.ofi)}${o.op?' · OP '+esc(o.op):''}</p></header><div class="tabs" role="group" aria-label="Mostrar elementos">${btn('Me falta','tab','secondary '+(tab==='missing'?'active':''),`data-value="missing" aria-pressed="${tab==='missing'}"`)}${btn('Todos','tab','secondary '+(tab==='all'?'active':''),`data-value="all" aria-pressed="${tab==='all'}"`)}</div>${shown.map(e=>elementCard(e)).join('')||'<div class="card empty">¡Todo listo por aquí! 🎉</div>'}`;}
+function renderElement(){const e=element();if(!e)return back()+'<p>Este elemento ya no está cargado.</p>';const o=data.ofis.find(o=>o.id===e.ofiId);return `${back()}<header><p class="muted small wrap">${esc(o.obra)} · OFI ${esc(o.ofi)}</p><h1 class="hero-ref wrap">${esc(e.ref)} ${e.cant>1?`<span class="qty">×${e.cant}</span>`:''}</h1><p class="wrap">${esc(e.desc)}</p>${badge(e)} <span class="small">${ready(e)} de ${e.piezas.length} listas</span></header>${e.revisar?'<div class="notice">Las piezas de este elemento podrían no estar bien. Si hay algo raro, toca Corregir piezas.</div>':''}${stopMode?`<div class="notice">Toca la pieza que quieres detener. ${btn('Cancelar','cancel-stop','quiet')}</div>`:''}<section class="${stopMode?'selecting':''}">${Array.from({length:e.cant},(_,i)=>i+1).map(u=>`${e.cant>1?`<h2>Unidad ${u}</h2>`:''}<div class="pieces">${e.piezas.filter(p=>p.unidad===u).map(p=>`<button class="piece ${p.estado}" data-action="piece" data-id="${esc(p.id)}" aria-label="${esc(pieceLabel(e,p))}, ${p.estado}, unidad ${u}"><span class="mark" aria-hidden="true">${p.estado==='lista'?'✓':p.estado==='detenida'?'⏸':'○'}</span><b>${esc(pieceLabel(e,p))}</b><small>${p.estado==='lista'?'Lista':p.estado==='detenida'?'Detenida':'Pendiente'}</small>${p.estado==='detenida'?`<small>${esc(p.motivo||'Sin motivo')}</small><small>${esc(day(p.fechaDetenida))}</small>`:''}</button>`).join('')||'<p class="muted">Sin piezas. Toca Corregir piezas.</p>'}</div>`).join('')}</section><div class="actions">${btn('✓ Todo listo','all-ready','',e.piezas.some(p=>p.estado==='pendiente')?'':'disabled')}${btn('⏸ Detener una pieza','stop','secondary',e.piezas.length?'':'disabled')}</div><div class="actions">${btn('📝 Anotar algo que falta','note','secondary')}</div>${openNotes(e).map(f=>`<div class="card note"><p class="wrap">${esc(f.texto)}</p><p class="muted small">${esc(day(f.fecha))}</p>${btn('Ya se resolvió','resolve','secondary',`data-id="${esc(f.id)}"`)}</div>`).join('')}${btn('Corregir piezas','correct','quiet')}`;}
+function renderLoad(){return `${back()}<h1>Cargar carátula</h1><div class="card"><div class="step"><span>1</span><h2>Convierte la foto</h2></div>${btn('📋 Copiar y abrir Claude','claude','wide')}<p class="muted" style="margin-top:20px">En Claude: mantén presionado y pega, adjunta la foto de la carátula y envía. Cuando responda, toca Copiar.</p><div id="copy-fallback"></div></div><div class="card"><div class="step"><span>2</span><h2>Pega la respuesta</h2></div>${btn('📥 Pegar respuesta','paste','secondary wide')}<label for="paste-text">También puedes pegarla aquí</label><textarea id="paste-text" placeholder="Mantén presionado aquí y toca Pegar."></textarea><div class="actions">${btn('Ver carátula','parse','secondary')}</div></div><div class="card"><div class="step"><span>3</span><h2>Revisa y guarda</h2></div><div id="preview"><p class="muted">Aquí verás los elementos antes de guardarlos.</p></div></div>`;}
+function previewHTML(){if(!preview)return '';const p=preview,sum=p.rows.reduce((s,e)=>s+e.cant,0),ok=p.totalCaratula===sum;return `<h2 class="wrap">${esc(p.obra)}</h2><p>OFI ${esc(p.ofi)}${p.op?' · OP '+esc(p.op):''}</p><p class="muted wrap">Referencia: ${esc(p.referencia||'—')}</p>${p.rows.map(e=>`<div class="preview-line wrap"><strong>${e.revisar?'⚠ ':''}${esc(e.ref)}${e.cant>1?' ×'+e.cant:''}</strong> · ${esc(summary(e))}${e.cant>1?' por unidad':''}</div>`).join('')}<div class="notice ${ok?'success':'error'}">${ok?`✓ Están los ${sum} elementos de la carátula`:p.totalCaratula===null?'⚠ No se pudo leer el total de la carátula. Revisa los elementos antes de guardar.':`⚠ ${sum<p.totalCaratula?'Faltan elementos':'La cantidad no coincide'}: la carátula dice ${p.totalCaratula} y se leyeron ${sum}. Toma otra foto más clara.`}</div>${btn(ok?'Guardar':'Guardar igual','save-import','wide')}`;}
+function parse(text){const p={obra:'',referencia:'',ofi:'',op:'',fecha:'',color:'',totalCaratula:null,rows:[]};const headers={OBRA:'obra',REFERENCIA:'referencia',OFI:'ofi',OP:'op',FECHA:'fecha',COLOR:'color',TOTAL:'totalCaratula'};text.split(/\r?\n/).forEach((line,i)=>{line=line.trim();if(!line||line.startsWith('```'))return;const f=line.split(';').map(x=>x.trim()),key=norm(f[0]);if(f.length===2&&headers[key]){p[headers[key]]=key==='TOTAL'?(/^\d+$/.test(f[1])&&validInt(Number(f[1]),0,1000000)?Number(f[1]):null):f[1];return;}if(['REF','REFERENCIA'].includes(key)&&norm(f[1])==='CANT')return;if(f.length<6||f.length>7||!f[0])throw Error(`No pude leer la línea ${i+1}. Pega la respuesta completa de Claude.`);const ns=[f[1],f[3],f[4],f[5]],values=ns.map(Number),good=ns.every(x=>/^\d+$/.test(x))&&values.every((n,j)=>validInt(n,j===0?1:0));const [cant,M,H,PF]=good?values:[1,1,1,0];if(cant*(M+H+PF)>20000)throw Error('Esta carátula tiene demasiadas piezas en una fila. Revisa las cantidades.');p.rows.push({ref:norm(f[0]),cant,desc:f[2],M,H,PF,revisar:!good||norm(f[6])==='REVISAR'||M+H+PF===0});});p.obra=norm(p.obra);p.ofi=normOfi(p.ofi);if(!p.obra||!p.ofi||!p.rows.length)throw Error('Falta la obra, el número de OFI o los elementos. Pega la respuesta completa.');if(p.rows.reduce((s,r)=>s+r.cant*(r.M+r.H+r.PF),0)>50000)throw Error('Hay demasiadas piezas. Revisa las cantidades antes de guardar.');return p;}
+function makePieces(cant,c){const ps=[];for(let u=1;u<=cant;u++)for(const t of types)for(let n=1;n<=c[t];n++)ps.push({id:uid(),tipo:t,unidad:u,numero:n,estado:'pendiente',motivo:'',fechaDetenida:null,fechaLista:null});return ps;}
+function importOfi(){if(!preview)return;const old=data.ofis.find(o=>o.obra===preview.obra&&o.ofi===preview.ofi);if(old){modal('Esta OFI ya está cargada. ¿Agregar solo los elementos nuevos?',`<p>El avance que ya tienes se conserva.</p><div class="actions">${btn('Sí','confirm-import','')}${btn('No','close')}</div>`);return;}finishImport();}
+function finishImport(){const p=preview;if(!p)return;let oid,added=0;const ok=save(d=>{let o=d.ofis.find(o=>o.obra===p.obra&&o.ofi===p.ofi);const exists=!!o;if(!o){o={id:uid(),obra:p.obra,referencia:p.referencia,ofi:p.ofi,op:p.op,fecha:p.fecha,color:p.color,totalCaratula:p.totalCaratula,creada:new Date().toISOString()};d.ofis.push(o);}oid=o.id;const refs=new Set(d.elementos.filter(e=>e.ofiId===oid).map(e=>norm(e.ref)));p.rows.forEach(r=>{if(exists&&refs.has(norm(r.ref)))return;d.elementos.push({id:uid(),ofiId:oid,ref:r.ref,cant:r.cant,desc:r.desc,revisar:r.revisar,piezas:makePieces(r.cant,r),faltas:[]});refs.add(norm(r.ref));added++;});});if(ok){preview=null;tab='missing';go('ofi',oid);toast(added?'Carátula guardada ✓':'No había elementos nuevos. Tu avance sigue igual.');}}
+function updateElement(fn){const e=element();if(!e)return;const before=status(e),id=e.id;if(save(d=>fn(d.elementos.find(x=>x.id===id)))){close();render();const now=element();if(before!==3&&status(now)===3)toast('¡'+now.ref+' listo! 🎉');}}
+function setPiece(p,state,reason=''){p.estado=state;p.motivo=state==='detenida'?reason:'';p.fechaDetenida=state==='detenida'?today():null;p.fechaLista=state==='lista'?today():null;}
+function clickPiece(id){const e=element(),p=e?.piezas.find(p=>p.id===id);if(!p)return;if(stopMode){modal('¿Por qué quedó detenida?',`<p class="muted">${esc(pieceLabel(e,p))}. El motivo es opcional.</p><div class="actions" style="flex-direction:column">${['Perfil rayado','A pintura','Falta material','Error de mecanizado','Sin motivo'].map(r=>btn(esc(r),'reason','secondary',`data-id="${esc(id)}" data-reason="${esc(r==='Sin motivo'?'':r)}"`)).join('')}${btn('Cancelar','close','quiet')}</div>`);}else if(p.estado==='detenida'){modal('¿Ya está lista?',`<div class="actions">${btn('Sí, está lista','held-ready','',`data-id="${esc(id)}"`)}${btn('No','close')}</div>`);}else updateElement(e=>setPiece(e.piezas.find(p=>p.id===id),p.estado==='lista'?'pendiente':'lista'));}
+function correctionDialog(){modal('Corregir piezas',`<p class="muted">Indica las piezas de cada unidad.</p>${correction.map((c,i)=>`<section>${correction.length>1?`<h3>Unidad ${i+1}</h3>`:''}${types.map(t=>`<div class="counter"><span>${names[t][1][0].toUpperCase()+names[t][1].slice(1)}</span><div class="counter-controls">${btn('−','adjust','secondary',`data-unit="${i}" data-type="${t}" data-delta="-1" aria-label="Quitar ${names[t][0]}, unidad ${i+1}"`)}<output id="c-${i}-${t}">${c[t]}</output>${btn('+','adjust','secondary',`data-unit="${i}" data-type="${t}" data-delta="1" aria-label="Agregar ${names[t][0]}, unidad ${i+1}"`)}</div></div>`).join('')}<hr class="divider"></section>`).join('')}<div class="actions">${btn('Guardar','save-correction','')}${btn('Cancelar','close')}</div>`);}
+function saveCorrection(confirmed=false){const e=element();if(!e||!correction)return;const total=correction.reduce((s,c)=>s+c.M+c.H+c.PF,0);if(total>20000){message('Revisa las cantidades','Hay demasiadas piezas en este elemento.');return;}const removed=e.piezas.filter(p=>p.numero>correction[p.unidad-1][p.tipo]).length;if(removed&&!confirmed){modal('¿Quitar estas piezas?',`<p>Se eliminarán ${removed} piezas y su avance. Las demás se conservan.</p><div class="actions">${btn('Sí, quitar','confirm-correction','danger')}${btn('Volver a corregir','return-correction')}</div>`);return;}updateElement(e=>{const previous=new Map(e.piezas.map(p=>[[p.unidad,p.tipo,p.numero].join(':'),p]));e.piezas=[];correction.forEach((c,i)=>types.forEach(t=>{for(let n=1;n<=c[t];n++)e.piezas.push(previous.get([i+1,t,n].join(':'))||{id:uid(),tipo:t,unidad:i+1,numero:n,estado:'pendiente',motivo:'',fechaDetenida:null,fechaLista:null});}));e.revisar=correction.some(c=>c.M+c.H+c.PF===0);});}
+function renderSettings(){return `${back()}<h1>Ajustes</h1><div class="card"><div class="actions" style="flex-direction:column">${btn('💾 Guardar copia de seguridad','backup','secondary')}${btn('📂 Recuperar copia de seguridad','restore','secondary')}${btn('Eliminar una OFI','delete-ofi','secondary')}${btn('Cargar OFI a mano','manual','secondary')}</div><input id="restore-file" type="file" accept=".json,application/json" hidden><p class="muted small">La copia incluye las obras y todo tu avance.</p></div><p class="muted small">Versión ${VERSION}</p>`;}
+function manualRow(){return `<div class="card manual-row"><h2>Elemento</h2><div class="fields"><label>Referencia<input name="ref" placeholder="V16" required></label><label>Cantidad<input name="cant" type="number" min="1" max="1000" step="1" value="1" required></label></div><label>Descripción<input name="desc" placeholder="Ventana del living"></label><p class="muted small">Piezas por unidad</p><div class="fields">${types.map(t=>`<label>${names[t][1]}<input name="${t}" type="number" min="0" max="1000" step="1" value="${t==='PF'?0:1}" required></label>`).join('')}</div>${btn('Quitar este elemento','remove-row','quiet')}</div>`;}
+function renderManual(){return `${back()}<h1>Cargar OFI a mano</h1><form id="manual-form"><div class="card"><label>Obra<input name="obra" required></label><label>OFI<input name="ofi" required></label></div><div id="manual-rows">${manualRow()}</div>${btn('➕ Agregar elemento','add-row','secondary','type="button"')}<div class="actions"><button class="btn wide" type="submit">Guardar</button></div></form>`;}
+function render(){const views={home:renderHome,ofi:renderOfi,element:renderElement,load:renderLoad,settings:renderSettings,manual:renderManual};$('#app').innerHTML=(views[page.name]||renderHome)();document.querySelectorAll('#manual-form button[data-action]').forEach(b=>b.type='button');if(page.name==='home')searchResults();}
+async function copyClaude(){let popup=window.open('about:blank','_blank');if(popup)popup.opener=null;try{if(!navigator.clipboard?.writeText)throw Error();await navigator.clipboard.writeText(CONVERSION);toast('Copiado ✓');const b=document.querySelector('[data-action="claude"]');if(b)b.textContent='Copiado ✓ · Abrir Claude';if(popup)popup.location.replace('https://claude.ai/new');else $('#copy-fallback').innerHTML='<p>Copiado ✓</p><a class="btn secondary wide" href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Abrir Claude</a>';}catch{if(popup)popup.close();$('#copy-fallback').innerHTML=`<label for="conversion">Copia este texto y luego abre Claude</label><textarea id="conversion" readonly>${esc(CONVERSION)}</textarea><a class="btn secondary wide" href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Abrir Claude</a>`;$('#conversion').select();}}
+function parsePreview(){try{preview=parse($('#paste-text').value);$('#preview').innerHTML=previewHTML();$('#preview').scrollIntoView({behavior:'smooth',block:'start'});}catch(e){preview=null;$('#preview').innerHTML=`<div class="notice error" role="alert">${esc(e.message)}</div>`;}}
+function downloadBackup(){let contents;try{contents=blocked?localStorage.getItem(KEY):JSON.stringify(data,null,2);if(!contents)throw Error();}catch{message('No pude preparar la copia','Vuelve a abrir la aplicación y prueba otra vez.');return;}const file=new File([contents],'mecanizado-respaldo-'+today()+'.json',{type:'application/json'});backupFile=file;const url=URL.createObjectURL(file),a=document.createElement('a');a.href=url;a.download=file.name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);let share=false;try{share=!!navigator.canShare?.({files:[file]});}catch{}modal('Copia de seguridad',`<p>La copia se está descargando. Guárdala en un lugar seguro.</p><div class="actions">${share?btn('Compartir copia','share',''):''}${btn('Listo','close')}</div>`);}
+let restoreData=null;
+async function readBackup(file){if(!file)return;try{if(file.size>15000000)throw Error('Esta copia es demasiado grande.');restoreData=validate(JSON.parse(await file.text()));modal('¿Recuperar esta copia?',`<p>Se reemplazará todo el avance de esta tablet por ${restoreData.ofis.length} OFI y ${restoreData.elementos.length} elementos de la copia.</p><div class="actions">${btn('Sí, recuperar','confirm-restore','danger')}${btn('Cancelar','close')}</div>`);}catch(e){restoreData=null;message('No pude abrir la copia',e instanceof SyntaxError?'Selecciona una copia de seguridad de Mecanizado Tecma.':e.message);}}
+function deleteOfiDialog(){if(!data.ofis.length){message('No hay OFI cargadas','Cuando cargues una carátula, aparecerá aquí.');return;}modal('Eliminar una OFI',`<label for="delete-select">Elige la OFI</label><select id="delete-select">${data.ofis.map(o=>`<option value="${esc(o.id)}">${esc(o.obra)} · OFI ${esc(o.ofi)}</option>`).join('')}</select><div class="actions">${btn('Continuar','ask-delete','danger')}${btn('Cancelar','close')}</div>`);}
+document.addEventListener('click',async event=>{
+  const b=event.target.closest('[data-action]');if(!b)return;const a=b.dataset.action,id=b.dataset.id;
+  switch(a){
+    case 'back':history.back();break;
+    case 'close':close();break;
+    case 'settings':go('settings');break;
+    case 'load':preview=null;go('load');break;
+    case 'ofi':tab='missing';go('ofi',id);break;
+    case 'element':go('element',id);break;
+    case 'tab':tab=b.dataset.value;render();break;
+    case 'piece':clickPiece(id);break;
+    case 'all-ready':updateElement(e=>e.piezas.filter(p=>p.estado==='pendiente').forEach(p=>setPiece(p,'lista')));break;
+    case 'stop':stopMode=true;render();break;
+    case 'cancel-stop':stopMode=false;render();break;
+    case 'reason':stopMode=false;updateElement(e=>setPiece(e.piezas.find(p=>p.id===id),'detenida',b.dataset.reason));break;
+    case 'held-ready':updateElement(e=>setPiece(e.piezas.find(p=>p.id===id),'lista'));break;
+    case 'note':modal('Anotar algo que falta',`<form id="note-form"><label for="note-text">¿Qué falta?</label><textarea id="note-text" placeholder="Falta perfil separador" maxlength="1000" required></textarea><div class="actions"><button class="btn" type="submit">Guardar</button>${btn('Cancelar','close','secondary','type="button"')}</div></form>`);break;
+    case 'resolve':updateElement(e=>{const f=e.faltas.find(f=>f.id===id);f.resuelta=true;f.fechaResuelta=today();});break;
+    case 'correct':correction=Array.from({length:element().cant},(_,i)=>counts(element(),i+1));correctionDialog();break;
+    case 'adjust':{const u=Number(b.dataset.unit),t=b.dataset.type;correction[u][t]=Math.max(0,Math.min(1000,correction[u][t]+Number(b.dataset.delta)));$(`#c-${u}-${t}`).textContent=correction[u][t];break;}
+    case 'save-correction':saveCorrection();break;
+    case 'confirm-correction':saveCorrection(true);break;
+    case 'return-correction':correctionDialog();break;
+    case 'claude':await copyClaude();break;
+    case 'paste':try{$('#paste-text').value=await navigator.clipboard.readText();parsePreview();}catch{$('#paste-text').focus();toast('Mantén presionado en el cuadro y toca Pegar.');}break;
+    case 'parse':parsePreview();break;
+    case 'save-import':importOfi();break;
+    case 'confirm-import':finishImport();break;
+    case 'backup':downloadBackup();break;
+    case 'share':try{await navigator.share({files:[backupFile],title:'Copia de Mecanizado Tecma'});close();}catch(e){if(e.name!=='AbortError')message('Puedes compartirla después','Busca la copia en Descargas y toca Compartir.');}break;
+    case 'restore':$('#restore-file').click();break;
+    case 'confirm-restore':if(restoreData&&save(restoreData,true)){restoreData=null;go('home');toast('Copia recuperada ✓');}break;
+    case 'delete-ofi':deleteOfiDialog();break;
+    case 'ask-delete':{const o=data.ofis.find(o=>o.id===$('#delete-select').value);modal('¿Eliminar esta OFI?',`<p>${esc(o.obra)} · OFI ${esc(o.ofi)}</p><p>Se eliminarán sus elementos y todo su avance.</p><div class="actions">${btn('Sí, eliminar','confirm-delete','danger',`data-id="${esc(o.id)}"`)}${btn('Cancelar','close')}</div>`);break;}
+    case 'confirm-delete':if(save(d=>{d.ofis=d.ofis.filter(o=>o.id!==id);d.elementos=d.elementos.filter(e=>e.ofiId!==id);})){close();render();toast('OFI eliminada');}break;
+    case 'manual':go('manual');break;
+    case 'add-row':$('#manual-rows').insertAdjacentHTML('beforeend',manualRow());document.querySelectorAll('#manual-form button[data-action]').forEach(b=>b.type='button');$('#manual-rows').lastElementChild.querySelector('input').focus();break;
+    case 'remove-row':{const row=b.closest('.manual-row');modal('¿Quitar este elemento?',`<div class="actions">${btn('Sí, quitar','confirm-remove-row','danger')}${btn('Cancelar','close')}</div>`);$('#dialog [data-action="confirm-remove-row"]').onclick=()=>{row.remove();close();};break;}
   }
-  for(const t of TIPOS)if(!entero(e.total[t])||!entero(e.listos[t])||!entero(detenidas(e,t))||e.listos[t]+detenidas(e,t)>e.total[t])throw Error('Un conteo supera el total de piezas.');
- }
- for(const h of d.historial)if(!momento(h.fechaHora)||!str(h.ofiId)||!str(h.ref)||!str(h.texto))throw Error('Hay un registro de historial inválido.');
- return d;
-}
-
-function errorGuardado(m){$('#problema').hidden=false;$('#problema').textContent=m}
-function cargar(){
- try{guardado=localStorage.getItem(CLAVE);db=guardado?verificar(JSON.parse(guardado)):vacio()}
- catch(e){bloqueado=true;errorGuardado('No se pudo leer el registro. No se sobrescribirá. En Más puedes descargarlo e importar un respaldo. '+e.message)}
-}
-function aviso(texto,deshacer=null){
- clearTimeout(temporizador);undo=deshacer;$('#mensaje span').textContent=texto;$('#deshacer').hidden=!deshacer;$('#mensaje').hidden=false;
- temporizador=setTimeout(()=>{$('#mensaje').hidden=true;undo=null},6000);
-}
-function historial(ofiId,ref,texto,elementoId=''){
- const o=db.ofis.find(o=>o.id===ofiId);
- db.historial.push({fechaHora:new Date().toISOString(),ofiId,ref,texto,elementoId,obra:o?.obra||'',ofi:o?.ofi||'',op:o?.op||''});
-}
-function cambiar(fn,texto='',reversible=false,permitirBloqueado=false,pintar=true){
- if(bloqueado&&!permitirBloqueado){alert('El registro está protegido porque no se pudo leer. Exporta o importa un respaldo en Más.');return false}
- const antes=copia(db);
- try{
-  if(localStorage.getItem(CLAVE)!==guardado){
-   alert('El registro cambió en otra pestaña. Se cargarán esos cambios; vuelve a realizar esta acción.');
-   cerrarDialogo(true);cargar();render();return false;
-  }
-  fn();verificar(db);
-  const nuevo=JSON.stringify(db);
-  localStorage.setItem(CLAVE,nuevo);guardado=nuevo;bloqueado=false;$('#problema').hidden=true;
-  undo=null;$('#mensaje').hidden=true;if(pintar)render();
-  const registroUndo=copia(db.historial.at(-1)||{});
-  if(texto)aviso(texto,reversible?()=>cambiar(()=>{
-   const registros=db.historial;db=antes;db.historial=registros;
-   historial(registroUndo.ofiId||'',registroUndo.ref||'','Se deshizo: '+registroUndo.texto,registroUndo.elementoId||'');
-  },'Marca deshecha.'):null);
-  return true;
- }catch(e){
-  db=antes;cerrarDialogo(true);render();
-  errorGuardado('No se guardó el cambio: '+e.message+' El registro anterior se conserva.');
-  return false;
- }
-}
-function sugerir(desc,cant){
- const s=desc.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
- const fijo=/^FYA\s+(?:(\d+)\s+)?FIJOS?\b/.exec(s);
- const combinado=/\(\s*(\d+)\s+MOVIL(?:ES)?\s*\+\s*(\d+)\s+FIJOS?\s*\)/.exec(s);
- if(fijo&&!s.includes('+'))return {M:0,H:0,PF:Number(fijo[1]||1)*cant};
- if(combinado)return {M:cant,H:(Number(combinado[1])+Number(combinado[2]))*cant,PF:0};
- return {M:cant,H:cant,PF:0};
-}
-function nuevoElemento(r,ofiId){
- return {id:uid(),ofiId,ref:refNormal(r.ref),cant:Number(r.cant),desc:limpia(r.desc),total:sugerir(r.desc,Number(r.cant)),listos:{M:0,H:0,PF:0},incidencias:[],nota:'',totalesRevisados:false};
-}
-const elementos=id=>db.elementos.filter(e=>e.ofiId===id),actual=()=>db.elementos.find(e=>e.id===ui.elementoId);
-function estadisticas(id){
- const lista=elementos(id),cuenta={no:0,proceso:0,pendiente:0,listo:0};
- lista.forEach(e=>cuenta[estado(e)]++);
- return {lista,cuenta,total:lista.reduce((n,e)=>n+e.cant,0),listos:lista.filter(e=>estado(e)==='listo').reduce((n,e)=>n+e.cant,0)};
-}
-function navegar(pagina,id){
- ui.pagina=pagina;
- if(pagina==='ofi'){ui.ofiId=id;ui.filtro='todos'}
- if(pagina==='elemento'){ui.elementoId=id;ui.ofiId=actual()?.ofiId}
- render();window.scrollTo(0,0);
-}
-function render(){
- if(ui.pagina==='ofi'&&!db.ofis.some(o=>o.id===ui.ofiId))ui.pagina='obras';
- if(ui.pagina==='elemento'&&!actual())ui.pagina='obras';
- const vistas={obras:vistaObras,ofi:vistaOFI,elemento:vistaElemento,nueva:vistaNueva,hoy:vistaHoy,mas:vistaMas};
- $('#app').innerHTML=vistas[ui.pagina]();
- document.querySelectorAll('nav button').forEach(b=>{
-  if(b.dataset.nav===(['ofi','elemento'].includes(ui.pagina)?'obras':ui.pagina))b.setAttribute('aria-current','page');
-  else b.removeAttribute('aria-current');
- });
-}
-function tarjetaOFI(o){
- const s=estadisticas(o.id);
- return `<button class="ofi" data-accion="abrir-ofi" data-id="${esc(o.id)}"><strong>OFI ${esc(o.ofi)} · OP ${esc(o.op||'Sin OP')}</strong><p>${esc(o.referencia||'Sin referencia')}${o.archivada?' · Archivada':''}</p><div class="fila entre"><span>${s.listos} de ${s.total} elementos listos</span><span class="secundario">Ver elementos →</span></div><div class="barra" role="progressbar" aria-label="Elementos listos" aria-valuenow="${s.listos}" aria-valuemin="0" aria-valuemax="${s.total||1}"><span style="width:${s.total?s.listos/s.total*100:0}%"></span></div><div class="fila">${Object.keys(ESTADOS).map(k=>`<span>${marca(k)} <b>${s.cuenta[k]}</b></span>`).join('')}</div></button>`;
-}
-function listadoObras(){
- const q=obraNormal(ui.busca);
- const lista=db.ofis.filter(o=>(ui.archivadas||!o.archivada)&&(!q||[o.obra,o.op,o.ofi,o.referencia,...elementos(o.id).map(e=>e.ref)].some(s=>obraNormal(s).includes(q))));
- const obras=[...new Set(lista.map(o=>o.obra))];
- return obras.length?obras.map(nombre=>`<section class="obra"><h2 class="romper">${esc(nombre)}</h2>${lista.filter(o=>o.obra===nombre).map(tarjetaOFI).join('')}</section>`).join(''):`<div class="vacio"><h2>${db.ofis.length?'No hay coincidencias':'Todavía no hay OFI'}</h2><p>${db.ofis.length?'Revisa la búsqueda o muestra las archivadas.':'Carga una carátula o crea la primera OFI a mano.'}</p><button class="primario" data-nav="nueva">+ Nueva OFI</button></div>`;
-}
-function vistaObras(){
- return `<h1>Obras</h1><label>Buscar obra, OP o elemento<input id="buscar" type="search" placeholder="Por ejemplo: CASA SAEZ o V24" value="${esc(ui.busca)}"></label><label class="check"><input id="archivadas" type="checkbox" ${ui.archivadas?'checked':''}>Mostrar archivadas</label><div id="listaObras">${listadoObras()}</div>`;
-}
-function vistaOFI(){
- const o=db.ofis.find(o=>o.id===ui.ofiId),s=estadisticas(o.id);
- return `<button data-nav="obras">← Obras</button><section class="tarjeta tinte" style="margin-top:16px"><div class="fila entre"><h1>${esc(o.obra)} · OFI ${esc(o.ofi)}</h1>${o.archivada?'<span class="etiqueta">Archivada</span>':''}</div><p>OP ${esc(o.op||'Sin OP')} · ${esc(o.referencia||'Sin referencia')}</p><p>${esc(o.color||'Sin color')} · ${esc(fecha(o.fecha))}</p><strong>${s.listos} de ${s.total} elementos listos</strong></section><details class="menu"><summary>Opciones de esta OFI</summary><div class="pila"><button data-accion="resumen" data-id="${esc(o.id)}">Resumen para la jefa</button><button data-accion="editar-ofi">Editar datos de la OFI</button><button data-accion="agregar-elemento">Agregar elemento a mano</button><button data-accion="archivar">${o.archivada?'Desarchivar':'Archivar'} OFI</button><button class="peligro" data-accion="eliminar-ofi">Eliminar OFI</button></div></details><div class="chips" aria-label="Filtrar elementos">${['todos',...Object.keys(ESTADOS)].map(k=>`<button data-filtro="${k}" class="${ui.filtro===k?'activo':''}" aria-pressed="${ui.filtro===k}">${k==='todos'?'Todos':k==='pendiente'?'Con pendiente':ESTADOS[k]} (${k==='todos'?s.lista.length:s.cuenta[k]})</button>`).join('')}</div>${s.lista.filter(e=>ui.filtro==='todos'||estado(e)===ui.filtro).map(e=>`<article class="tarjeta elemento"><button class="abrir" data-accion="abrir-elemento" data-id="${esc(e.id)}"><strong>${esc(e.ref)}</strong>${e.cant>1?`<b>×${e.cant}</b>`:''}<span class="descripcion">${esc(e.desc)}</span>${marca(estado(e))}${!e.totalesRevisados?' <span class="etiqueta">Piezas sugeridas</span>':''}</button><div class="piezas">${TIPOS.filter(t=>e.total[t]>0).map(t=>`<button class="pieza ${e.listos[t]===e.total[t]?'completa':''}" data-accion="marca" data-id="${esc(e.id)}" data-tipo="${t}" aria-label="${esc(e.ref)}: ${NOMBRES[t][1]}, ${e.listos[t]} de ${e.total[t]} listas"><b>${t}</b><span>${e.listos[t]}/${e.total[t]}</span></button>`).join('')}</div></article>`).join('')||'<div class="vacio">No hay elementos en este filtro.</div>'}`;
-}
-function textoIncidencia(i){
- return [i.tipo==='detenida'?piezas(i.cantidad,i.pieza)+' detenid'+(i.pieza==='H'?'a':'o')+(i.cantidad===1?'':'s'):'Falta externa',i.motivo,i.comentario].filter(Boolean).join(' – ');
-}
-function tarjetaIncidencia(e,i,global=false){
- const o=db.ofis.find(o=>o.id===e.ofiId);
- return `<article class="tarjeta ${i.fechaResolucion?'resuelta':'incidencia'}">${global?`<button class="abrir" data-accion="abrir-elemento" data-id="${esc(e.id)}"><strong>${esc(e.ref)}</strong><p>${esc(o?.obra)} · OFI ${esc(o?.ofi)}${o?.archivada?' · Archivada':''}</p></button>`:''}<p class="romper"><strong>${esc(textoIncidencia(i))}</strong></p><p>Desde ${fecha(i.fechaInicio)} · ${edad(i.fechaInicio)}</p>${i.fechaResolucion?`<p>Resuelta el ${fecha(hoy(new Date(i.fechaResolucion)))} · ${hora(i.fechaResolucion)}</p>`:`<button data-accion="resolver" data-id="${esc(e.id)}" data-incidencia="${esc(i.id)}">Resolver</button>`}</article>`;
-}
-function vistaElemento(){
- const e=actual();
- return `<button data-accion="volver-ofi">← OFI</button><section class="tarjeta tinte" style="margin-top:16px"><div class="fila entre"><h1>${esc(e.ref)} ${e.cant>1?'×'+e.cant:''}</h1>${marca(estado(e))}</div><p>Cantidad de elementos: ${e.cant}</p><label>Descripción<input id="descripcion" value="${esc(e.desc)}"></label>${!e.totalesRevisados?'<p><span class="etiqueta">Piezas sugeridas</span></p>':''}</section><div class="rejilla">${TIPOS.map(t=>`<section class="tarjeta"><h2>${NOMBRES[t][1][0].toUpperCase()+NOMBRES[t][1].slice(1)} · ${t}</h2><div class="contador"><span>Total:</span><button data-contador="total" data-tipo="${t}" data-delta="-1" aria-label="Restar un total de ${NOMBRES[t][1]}" ${e.total[t]<=e.listos[t]+detenidas(e,t)?'disabled':''}>−</button><output>${e.total[t]}</output><button data-contador="total" data-tipo="${t}" data-delta="1" aria-label="Sumar un total de ${NOMBRES[t][1]}">+</button></div><div class="contador"><span>Listos:</span><button data-contador="listos" data-tipo="${t}" data-delta="-1" aria-label="Restar ${NOMBRES[t][0]} listo" ${e.listos[t]===0?'disabled':''}>−</button><output>${e.listos[t]}</output><button data-contador="listos" data-tipo="${t}" data-delta="1" aria-label="Sumar ${NOMBRES[t][0]} listo" ${e.listos[t]>=e.total[t]-detenidas(e,t)?'disabled':''}>+</button></div>${detenidas(e,t)?`<p><b>Detenidas: ${detenidas(e,t)}</b></p>`:''}<button data-accion="todas" data-id="${esc(e.id)}" data-tipo="${t}" ${e.listos[t]>=e.total[t]-detenidas(e,t)?'disabled':''}>Todas listas</button></section>`).join('')}</div><button data-accion="confirmar-totales" ${e.totalesRevisados?'disabled':''}>${e.totalesRevisados?'✓ Totales revisados':'Totales correctos'}</button><div class="botones separador"><button class="primario" data-accion="detenida">Registrar pieza detenida</button><button data-accion="externa">Registrar falta externa</button></div><section class="separador"><h2>Incidencias abiertas</h2>${e.incidencias.filter(i=>!i.fechaResolucion).map(i=>tarjetaIncidencia(e,i)).join('')||'<p>Sin incidencias abiertas.</p>'}<details><summary>Incidencias resueltas (${e.incidencias.filter(i=>i.fechaResolucion).length})</summary><div style="margin-top:16px">${e.incidencias.filter(i=>i.fechaResolucion).map(i=>tarjetaIncidencia(e,i)).join('')}</div></details></section><label class="campo">Nota<textarea id="nota" rows="3" placeholder="Escribe una nota">${esc(e.nota)}</textarea></label><p class="secundario">Los cambios se guardan automáticamente.</p><section class="separador"><h2>Historial de ${esc(e.ref)}</h2>${db.historial.filter(h=>h.elementoId?h.elementoId===e.id:h.ofiId===e.ofiId&&h.ref===e.ref).slice().reverse().map(h=>`<div class="historia"><small>${fecha(diaHistoria(h.fechaHora))} · ${hora(h.fechaHora)}</small><div>${esc(h.texto)}</div></div>`).join('')||'<p>Todavía no hay registros.</p>'}</section><button class="peligro separador" data-accion="eliminar-elemento">Eliminar elemento</button>`;
-}
-function camposCabecera(o,prefijo=''){
- return `<div class="rejilla">${[['obra','Obra'],['referencia','Referencia / Etapa'],['ofi','OFI'],['op','OP'],['fecha','Fecha (dd-mm-aaaa)'],['color','Color'],['totalCaratula','Total de la carátula']].map(([k,n])=>`<label>${n}<input ${prefijo?'data-cabecera="'+k+'"':''} name="${k}" value="${esc(o[k])}" ${k==='totalCaratula'?'inputmode="numeric"':''} class="${String(o[k]||'').includes('??')?'incierta':''}" ${['obra','ofi'].includes(k)?'required':''}></label>`).join('')}</div>`;
-}
-function leerTexto(texto){
- const cab={obra:'',referencia:'',ofi:'',op:'',fecha:'',color:'',totalCaratula:''},filas=[],omitidas=[];
- const nombres={OBRA:'obra',REFERENCIA:'referencia',OFI:'ofi',OP:'op',FECHA:'fecha',COLOR:'color',TOTAL:'totalCaratula'};
- for(const [n,linea] of texto.split(/\r?\n/).entries()){
-  const l=linea.trim();if(!l||l.startsWith('```'))continue;
-  const partes=l.split(';'),primero=limpia(partes[0]).toUpperCase();
-  if(Object.hasOwn(nombres,primero)&&partes.length===2){cab[nombres[primero]]=limpia(partes[1]);continue}
-  if(partes.length>=2){
-   if(primero==='REF'&&partes[1].toUpperCase()==='CANT')continue;
-   const valido=/^\d+$/.test(partes[1].trim())&&entero(Number(partes[1]),1);
-   filas.push({ref:limpia(partes[0]),cant:valido?Number(partes[1]):1,desc:limpia(partes.slice(2).join(',')),revisar:!valido});
-  }else omitidas.push(n+1);
- }
- return {cab,filas,omitidas};
-}
-function validacion(){
- const b=ui.borrador,suma=b.filas.reduce((n,r)=>n+(entero(Number(r.cant),1)?Number(r.cant):0),0),total=Number(b.cab.totalCaratula),valido=String(b.cab.totalCaratula).trim()!==''&&entero(total);
- return {suma,total,valido,coincide:valido&&suma===total};
-}
-function mensajeValidacion(){
- const v=validacion();
- return `<div class="aviso ${v.coincide?'bien':'mal'}">${v.coincide?`✓ Coincide con la carátula: ${v.suma} elementos`:v.valido?`⚠ La suma da ${v.suma} pero la carátula dice ${v.total}. Revisa antes de guardar.`:`⚠ La suma da ${v.suma}. Falta revisar el TOTAL de la carátula.`}</div>`;
-}
-function vistaBorrador(){
- const b=ui.borrador;
- return `<section class="tarjeta"><h2>Revisar carátula</h2>${camposCabecera(b.cab,'b')}${b.omitidas.length?`<p class="aviso mal">No se reconocieron las líneas ${b.omitidas.join(', ')}. Revisa que no falte ningún elemento.</p>`:''}<p>Corrige lo amarillo y verifica las cantidades.</p><div class="tabla"><table><thead><tr><th>Referencia</th><th>Cantidad</th><th>Descripción</th><th>Acción</th></tr></thead><tbody>${b.filas.map((r,i)=>`<tr class="${r.revisar?'incierta':''}">${['ref','cant','desc'].map(k=>`<td><input aria-label="${{ref:'Referencia',cant:'Cantidad',desc:'Descripción'}[k]} fila ${i+1}" data-fila="${i}" data-campo="${k}" value="${esc(r[k])}" ${k==='cant'?'inputmode="numeric"':''} class="${String(r[k]).includes('??')||k==='cant'&&r.revisar?'incierta':''}"></td>`).join('')}<td><button class="peligro" data-accion="borrar-fila" data-fila="${i}" aria-label="Borrar fila ${i+1}">Borrar</button></td></tr>`).join('')}</tbody></table></div><button class="campo" data-accion="agregar-fila">+ Agregar fila</button><div id="validacion">${mensajeValidacion()}</div><button class="primario campo" data-accion="guardar-ofi">Guardar OFI</button></section>`;
-}
-function vistaNueva(){
- return `<h1>Nueva OFI</h1><section class="tarjeta"><div class="paso"><b>1</b><h2>Copia la instrucción</h2></div><button data-accion="copiar-instruccion">Copiar instrucción para Claude</button></section><section class="tarjeta"><div class="paso"><b>2</b><h2>Envía la foto de la carátula</h2></div><a class="boton" href="https://claude.ai/new" target="_blank" rel="noopener noreferrer">Abrir Claude ↗</a><p>Pega la instrucción, adjunta la foto de la carátula y envía. Luego copia la respuesta.</p><p class="secundario">Este paso necesita internet. También puedes crear la OFI a mano.</p></section><section class="tarjeta"><div class="paso"><b>3</b><h2>Pega la respuesta</h2></div><label>Pega aquí la respuesta de Claude<textarea id="textoClaude" rows="8">${esc(ui.texto)}</textarea></label><button class="campo" data-accion="pegar">Pegar desde el portapapeles</button></section><section class="tarjeta"><div class="paso"><b>4</b><h2>Revisa los datos</h2></div><button class="primario" data-accion="revisar">Revisar</button></section>${ui.borrador?vistaBorrador():''}<section class="separador"><h2>También puedes cargarla sin foto</h2><button data-accion="manual">Crear OFI a mano</button></section>`;
-}
-function vistaHoy(){
- const registros=db.historial.filter(h=>diaHistoria(h.fechaHora)===ui.dia),grupos=[...new Set(registros.map(h=>h.ofiId))];
- const abiertas=db.elementos.flatMap(e=>e.incidencias.filter(i=>!i.fechaResolucion).map(i=>({e,i}))).sort((a,b)=>a.i.fechaInicio.localeCompare(b.i.fechaInicio));
- return `<h1>Hoy · Cierre del día</h1><label class="fecha">Fecha (dd-mm-aaaa)<input id="diaHistorial" value="${fecha(ui.dia)}" inputmode="numeric"></label><section class="separador"><h2>Lo registrado</h2>${grupos.map(id=>{const hs=registros.filter(h=>h.ofiId===id),o=db.ofis.find(o=>o.id===id)||hs[0];return `<section class="tarjeta"><h3>${esc(o.obra||'Registro general')} ${o.ofi?'· OFI '+esc(o.ofi):''}</h3>${hs.map(h=>`<div class="historia"><strong>${hora(h.fechaHora)}</strong> · ${esc(h.texto)}</div>`).join('')}</section>`}).join('')||'<p>No hay registros en esta fecha.</p>'}</section><section class="separador"><h2>Incidencias abiertas (${abiertas.length})</h2>${abiertas.map(({e,i})=>tarjetaIncidencia(e,i,true)).join('')||'<p>No hay incidencias abiertas.</p>'}</section>`;
-}
-function resumen(id){
- const o=db.ofis.find(o=>o.id===id);if(!o)return '';
- const s=estadisticas(id),pendientes=s.lista.filter(e=>e.incidencias.some(i=>!i.fechaResolucion)),proceso=s.lista.filter(e=>estado(e)==='proceso'),no=s.lista.filter(e=>estado(e)==='no');
- return `${o.obra} – OFI ${o.ofi} (OP ${o.op||'Sin OP'}) – ${fecha(hoy())}\nListos: ${s.listos} de ${s.total}\nCon pendiente (${pendientes.length}):\n${pendientes.length?pendientes.flatMap(e=>e.incidencias.filter(i=>!i.fechaResolucion).map(i=>'• '+e.ref+': '+textoIncidencia(i)+' – desde '+fecha(i.fechaInicio).slice(0,5))).join('\n'):'Sin pendientes'}\nEn proceso (${proceso.length}): ${proceso.length?proceso.map(e=>e.ref+' ('+TIPOS.filter(t=>e.total[t]>0).map(t=>t+' '+e.listos[t]+'/'+e.total[t]).join(', ')+')').join(', '):'Ninguno'}\nNo iniciados (${no.length}): ${no.length?no.map(e=>e.ref).join(', '):'Ninguno'}`;
-}
-function vistaMas(){
- if(!db.ofis.some(o=>o.id===ui.resumenId))ui.resumenId=db.ofis[0]?.id||'';
- return `<h1>Más</h1><section class="tarjeta"><h2>Resumen para la jefa</h2>${db.ofis.length?`<label>Elegir OFI<select id="ofiResumen">${db.ofis.map(o=>`<option value="${esc(o.id)}" ${o.id===ui.resumenId?'selected':''}>${esc(o.obra)} · OFI ${esc(o.ofi)}${o.archivada?' · Archivada':''}</option>`).join('')}</select></label><label class="campo">Texto del resumen<textarea id="textoResumen" class="resumen" readonly>${esc(resumen(ui.resumenId))}</textarea></label><div class="fila"><button class="primario" data-accion="compartir-resumen">Compartir</button><button data-accion="copiar-resumen">Copiar</button></div>`:'<p>Primero crea una OFI.</p>'}</section><section class="tarjeta"><h2>Respaldo</h2><p>El registro queda en este dispositivo. Exporta un respaldo para conservar otra copia o trasladarlo a otra tablet.</p><div class="botones"><button data-accion="exportar">Exportar respaldo</button><button data-accion="importar">Importar respaldo</button></div></section><section class="tarjeta"><h2>Aplicación</h2><p>Versión ${VERSION_APP}</p><p class="secundario" id="estadoOffline">${listoOffline?'Preparada para usar sin conexión.':'serviceWorker' in navigator?'Para usarla sin conexión, ábrela primero con internet.':'El uso sin conexión requiere abrir la aplicación publicada con HTTPS.'}</p><button id="instalar" data-accion="instalar" ${eventoInstalar?'':'hidden'}>Instalar aplicación</button><p class="secundario">También puedes usar el menú de Chrome → Agregar a la pantalla principal o Instalar aplicación.</p><button class="peligro" data-accion="borrar-todo">Borrar todos los datos</button></section>`;
-}
-
-let alEnviar=null,alCancelar=null,eventoInstalar=null;
-function cerrarDialogo(cancelado=false){
- const cancelar=alCancelar;alEnviar=null;alCancelar=null;$('#dialogo').close();
- if(cancelado&&cancelar)cancelar();
-}
-function modal(titulo,contenido,enviar,boton='Guardar',cancelar=null){
- if($('#dialogo').open)cerrarDialogo(true);
- $('#tituloDialogo').textContent=titulo;$('#cuerpoDialogo').innerHTML=contenido;
- $('#aceptarDialogo').textContent=boton;$('#cancelarDialogo').textContent='Cancelar';
- alEnviar=enviar;alCancelar=cancelar;$('#dialogo').showModal();
-}
-function confirmar(titulo,texto,palabra=''){
- return new Promise(resolve=>{
-  modal(titulo,`<p>${esc(texto)}</p>${palabra?`<label>Escribe ${palabra} para confirmar<input name="confirmacion" autocomplete="off" required></label>`:''}`,form=>{
-   if(palabra&&form.get('confirmacion')!==palabra){alert('Escribe exactamente '+palabra+'.');return false}
-   resolve(true);
-  },palabra?'Confirmar':'Sí',()=>resolve(false));
-  $('#cancelarDialogo').textContent='No';
- });
-}
-$('#cancelarDialogo').onclick=()=>cerrarDialogo(true);
-$('#dialogo').addEventListener('cancel',e=>{e.preventDefault();cerrarDialogo(true)});
-$('#formDialogo').onsubmit=e=>{
- e.preventDefault();
- try{if(alEnviar&&alEnviar(new FormData(e.target))!==false)cerrarDialogo()}
- catch(error){alert(error.message)}
-};
-async function copiarTexto(texto){
- try{await navigator.clipboard.writeText(texto);aviso('Copiado ✓');return true}
- catch{
-  const t=document.createElement('textarea');t.value=texto;t.style.position='fixed';t.style.opacity='0';document.body.append(t);t.select();
-  let bien=false;try{bien=document.execCommand('copy')}catch{}
-  t.remove();
-  if(bien){aviso('Copiado ✓');return true}
-  modal('Copiar texto','<p>Mantén presionado el texto y elige Seleccionar todo → Copiar.</p><textarea rows="12" readonly id="copiaManual">'+esc(texto)+'</textarea>',()=>{},'Cerrar');
-  return false;
- }
-}
-async function marcar(id,t,soloSumar=false){
- const e=db.elementos.find(e=>e.id===id);if(!e)return;
- const max=e.total[t]-detenidas(e,t);
- if(max===0){aviso('Todas las piezas de este tipo están detenidas. Resuelve su incidencia para marcarlas listas.');return}
- let valor=max;
- if(e.listos[t]===max){
-  if(soloSumar)return;
-  if(!await confirmar('Desmarcar piezas',`¿Desmarcar ${t==='H'?'las':'los'} ${NOMBRES[t][1]} de ${e.ref}?`))return;
-  valor=0;
- }
- cambiar(()=>{
-  e.listos[t]=valor;
-  historial(e.ofiId,e.ref,`${e.ref}: ${valor} de ${e.total[t]} ${NOMBRES[t][1]} list${t==='H'?'as':'os'}`,e.id);
- },`${e.ref}: ${valor}/${e.total[t]} ${NOMBRES[t][1]} list${t==='H'?'as':'os'}.`,true);
-}
-function contador(tipo,t,delta){
- const e=actual(),valor=e[tipo][t]+delta,min=tipo==='total'?e.listos[t]+detenidas(e,t):0,max=tipo==='listos'?e.total[t]-detenidas(e,t):Number.MAX_SAFE_INTEGER;
- if(!entero(valor)||valor<min||valor>max)return;
- cambiar(()=>{
-  e[tipo][t]=valor;if(tipo==='total')e.totalesRevisados=true;
-  historial(e.ofiId,e.ref,`${e.ref}: ${tipo==='total'?'total corregido a '+piezas(valor,t):valor+' de '+e.total[t]+' '+NOMBRES[t][1]+' list'+(t==='H'?'as':'os')}`,e.id);
- },'Cambio guardado.',tipo==='listos');
-}
-function formularioIncidencia(tipo){
- const e=actual();
- modal(tipo==='detenida'?'Registrar pieza detenida':'Registrar falta externa',`${tipo==='detenida'?`<div class="rejilla"><label>Tipo de pieza<select name="pieza" id="tipoIncidencia">${TIPOS.map(t=>`<option value="${t}">${t} · ${NOMBRES[t][1]}</option>`).join('')}</select></label><label>Cantidad<input name="cantidad" id="cantidadIncidencia" type="number" min="1" step="1" value="1" required></label></div><p id="avisoReclasificacion" class="aviso"></p><label class="campo">Motivo (opcional)<input name="motivo" id="motivoIncidencia"></label><div class="fila">${['Perfil rayado','Enviado a pintura','Falta material','Error de mecanizado','Otro'].map(m=>`<button type="button" data-motivo="${m}">${m}</button>`).join('')}</div>`:''}<label class="campo">Comentario ${tipo==='detenida'?'(opcional)':''}<textarea name="comentario" rows="3" ${tipo==='externa'?'required placeholder="Por ejemplo: Falta perfil separador"':''}></textarea></label><label>Fecha (dd-mm-aaaa)<input name="fechaInicio" value="${fecha(hoy())}" required></label>`,f=>{
-  const inicio=fechaISO(f.get('fechaInicio'));
-  if(!inicio||inicio>hoy()){alert('Escribe una fecha válida que no sea futura, con formato dd-mm-aaaa.');return false}
-  const i={id:uid(),tipo,motivo:limpia(f.get('motivo')),comentario:limpia(f.get('comentario')),fechaInicio:inicio,fechaResolucion:null};
-  if(tipo==='detenida'){
-   i.pieza=f.get('pieza');i.cantidad=Number(f.get('cantidad'));
-   if(!entero(i.cantidad,1)||i.cantidad>e.total[i.pieza]-detenidas(e,i.pieza)){alert('La cantidad supera las piezas disponibles. Revisa los totales y las incidencias abiertas.');return false}
-  }else if(!i.comentario){alert('Escribe qué falta.');return false}
-  return cambiar(()=>{
-   if(tipo==='detenida')e.listos[i.pieza]=Math.min(e.listos[i.pieza],e.total[i.pieza]-detenidas(e,i.pieza)-i.cantidad);
-   e.incidencias.push(i);historial(e.ofiId,e.ref,e.ref+': '+textoIncidencia(i),e.id);
-  },'Incidencia registrada.');
- });
- if(tipo==='detenida')avisoReclasificacion();
-}
-function avisoReclasificacion(){
- const e=actual(),t=$('#tipoIncidencia').value,n=Number($('#cantidadIncidencia').value),disponibles=e.total[t]-detenidas(e,t),descontar=Math.max(0,e.listos[t]+n-disponibles);
- $('#avisoReclasificacion').textContent=`Disponibles para detener: ${disponibles}.`+(descontar>0&&n<=disponibles?` Se descontarán ${descontar} de las piezas listas al registrar esta incidencia.`:'');
- $('#cantidadIncidencia').max=disponibles;
-}
-async function resolverIncidencia(id,inc){
- const e=db.elementos.find(e=>e.id===id),i=e?.incidencias.find(i=>i.id===inc);
- if(!i||i.fechaResolucion)return;
- if(!await confirmar('Resolver incidencia',i.tipo==='detenida'?`${e.ref}: ${piezas(i.cantidad,i.pieza)} pasarán automáticamente a listas. ¿Confirmar?`:`¿Resolver la falta externa de ${e.ref}?`))return;
- cambiar(()=>{
-  i.fechaResolucion=new Date().toISOString();if(i.tipo==='detenida')e.listos[i.pieza]+=i.cantidad;
-  historial(e.ofiId,e.ref,e.ref+': incidencia resuelta – '+textoIncidencia(i),e.id);
- },'Incidencia resuelta.');
-}
-function cabeceraValidada(c){
- const o={obra:obraNormal(c.obra),ofi:ofiNormal(c.ofi),referencia:limpia(c.referencia),op:limpia(c.op),fecha:limpia(c.fecha),color:limpia(c.color),totalCaratula:Number(c.totalCaratula)};
- if(!o.obra||!o.ofi)throw Error('Completa Obra y OFI.');
- if(String(c.totalCaratula).trim()===''||!entero(o.totalCaratula))throw Error('El total de la carátula debe ser un número entero igual o mayor que cero.');
- if(o.fecha&&!o.fecha.includes('??')){
-  const f=fechaISO(o.fecha);if(!f)throw Error('Revisa la fecha. Usa dd-mm-aaaa o déjala vacía.');
-  o.fecha=fecha(f);
- }
- return o;
-}
-function editarOFI(){
- const o=db.ofis.find(o=>o.id===ui.ofiId);
- modal('Editar datos de la OFI',camposCabecera(o),f=>{
-  const cambios=cabeceraValidada(Object.fromEntries(f));
-  if(db.ofis.some(x=>x.id!==o.id&&x.obra===cambios.obra&&x.ofi===cambios.ofi)){alert('Ya existe esa OFI en esta obra.');return false}
-  return cambiar(()=>{Object.assign(o,cambios);historial(o.id,'','Datos de la OFI actualizados.')},'Datos guardados.');
- });
-}
-function agregarElemento(){
- const id=ui.ofiId;
- modal('Agregar elemento a mano','<label>Referencia<input name="ref" required></label><label class="campo">Cantidad<input name="cant" type="number" min="1" step="1" value="1" required></label><label>Descripción<textarea name="desc" rows="3"></textarea></label>',f=>{
-  const r=Object.fromEntries(f);
-  if(!refNormal(r.ref)||!entero(Number(r.cant),1)){alert('Revisa la referencia y la cantidad.');return false}
-  if(elementos(id).some(e=>refNormal(e.ref)===refNormal(r.ref))){alert('Esa referencia ya existe en la OFI.');return false}
-  const e=nuevoElemento(r,id);
-  return cambiar(()=>{db.elementos.push(e);historial(id,e.ref,e.ref+': elemento agregado.',e.id)},'Elemento agregado.');
- });
-}
-async function guardarOFI(){
- const b=ui.borrador;if(!b)return;
- let cab;try{cab=cabeceraValidada(b.cab)}catch(e){alert(e.message);return}
- if(!b.filas.length){alert('Agrega al menos un elemento.');return}
- const refs=new Set();
- for(const r of b.filas){
-  const ref=refNormal(r.ref);
-  if(!ref||!entero(Number(r.cant),1)){alert('Todas las filas deben tener referencia y una cantidad entera mayor que cero.');return}
-  if(refs.has(ref)){alert('La referencia '+ref+' está repetida. Corrige o une esas filas.');return}
-  refs.add(ref);
- }
- if(!validacion().coincide&&!await confirmar('Revisar cantidades',`La suma da ${validacion().suma} pero la carátula dice ${cab.totalCaratula}. ¿Guardar igual?`))return;
- if((b.omitidas.length||b.filas.some(r=>r.revisar)||JSON.stringify(b).includes('??'))&&!await confirmar('Hay datos por revisar','Hay campos dudosos, cantidades sugeridas o líneas no reconocidas. ¿Guardar de todas formas?'))return;
- const existe=db.ofis.find(o=>o.obra===cab.obra&&o.ofi===cab.ofi);
- if(existe&&!await confirmar('OFI existente','Esta OFI ya existe. ¿Agregar solo los elementos nuevos?'))return;
- const id=existe?.id||uid(),nuevas=b.filas.filter(r=>!existe||!elementos(id).some(e=>refNormal(e.ref)===refNormal(r.ref)));
- if(existe&&!nuevas.length){aviso('No hay referencias nuevas. El avance se conserva.');return}
- const ok=cambiar(()=>{
-  if(!existe){db.ofis.push({...cab,id,creada:new Date().toISOString(),archivada:false});historial(id,'','OFI creada.')}
-  for(const r of nuevas){const e=nuevoElemento(r,id);db.elementos.push(e);historial(id,e.ref,e.ref+': elemento agregado desde carátula.',e.id)}
- },`${nuevas.length} referencias guardadas.`);
- if(ok){ui.borrador=null;ui.texto='';navegar('ofi',id)}
-}
-async function eliminarOFI(){
- const o=db.ofis.find(o=>o.id===ui.ofiId);
- if(!await confirmar('Eliminar OFI',`¿Eliminar ${o.obra}, OFI ${o.ofi}, con todos sus elementos?`))return;
- if(!await confirmar('Confirmación final','Esta eliminación no se puede deshacer.','ELIMINAR'))return;
- cambiar(()=>{
-  historial(o.id,'','OFI eliminada.');
-  db.elementos=db.elementos.filter(e=>e.ofiId!==o.id);db.ofis=db.ofis.filter(x=>x.id!==o.id);
- },'OFI eliminada.');
-}
-async function eliminarElemento(){
- const e=actual();
- if(!await confirmar('Eliminar elemento',`¿Eliminar ${e.ref} y sus incidencias? Esta acción no se puede deshacer.`))return;
- const id=e.ofiId;
- if(cambiar(()=>{historial(id,e.ref,e.ref+': elemento eliminado.',e.id);db.elementos=db.elementos.filter(x=>x.id!==e.id)},'Elemento eliminado.'))navegar('ofi',id);
-}
-function descargar(blob,nombre){
- const url=URL.createObjectURL(blob),a=document.createElement('a');
- a.href=url;a.download=nombre;document.body.append(a);a.click();a.remove();
- setTimeout(()=>URL.revokeObjectURL(url),30000);
-}
-async function exportar(){
- let contenido;
- try{contenido=bloqueado?(localStorage.getItem(CLAVE)||guardado||JSON.stringify(db)):JSON.stringify(db,null,2)}
- catch{contenido=guardado||JSON.stringify(db)}
- const nombre='mecanizado-respaldo-'+hoy()+'.json',archivo=new File([contenido],nombre,{type:'application/json'});
- descargar(archivo,nombre);
- if(navigator.canShare?.({files:[archivo]})){
-  modal('Respaldo descargado','<p>¿Quieres compartir también el archivo? Puedes enviártelo por WhatsApp o guardarlo en otro lugar.</p>',()=>{
-   navigator.share({files:[archivo],title:'Respaldo Mecanizado Tecma'}).catch(e=>{if(e.name!=='AbortError')aviso('El respaldo ya se descargó. Puedes compartirlo desde Descargas.')});
-  },'Compartir');
- }else aviso('Respaldo descargado. Está en Descargas.');
-}
-async function importar(archivo){
- if(!archivo)return;
- let nuevo;
- try{nuevo=verificar(JSON.parse(await archivo.text()))}
- catch(e){alert('No se importó el archivo. '+e.message);return}
- if(!await confirmar('Importar respaldo',`Este respaldo tiene ${nuevo.ofis.length} OFI y ${nuevo.elementos.length} referencias. Reemplazará todo el registro actual. ¿Continuar?`))return;
- const ok=cambiar(()=>{db=nuevo},'Respaldo importado.',false,true);
- if(ok){ui.borrador=null;ui.texto='';navegar('obras')}
-}
-async function borrarTodo(){
- if(!await confirmar('Borrar todos los datos','¿Borrar todas las OFI, elementos, incidencias e historial de este dispositivo? Exporta un respaldo si deseas conservarlos.'))return;
- if(!await confirmar('Confirmación final','Esta acción no se puede deshacer.','BORRAR'))return;
- if(cambiar(()=>{db=vacio()},'Todos los datos se borraron.',false,true)){ui.borrador=null;ui.texto='';navegar('obras')}
-}
-async function accion(nombre,b){
- switch(nombre){
- case 'abrir-ofi':
-  navegar('ofi',b.dataset.id);break;
- case 'abrir-elemento':
-  navegar('elemento',b.dataset.id);break;
- case 'volver-ofi':
-  navegar('ofi',ui.ofiId);break;
- case 'marca':
-  await marcar(b.dataset.id,b.dataset.tipo);break;
- case 'todas':
-  await marcar(b.dataset.id,b.dataset.tipo,true);break;
- case 'confirmar-totales':{
-  const e=actual();
-  cambiar(()=>{e.totalesRevisados=true;historial(e.ofiId,e.ref,e.ref+': totales confirmados.',e.id)},'Totales confirmados.');
-  break;
- }
- case 'detenida':
-  formularioIncidencia('detenida');break;
- case 'externa':
-  formularioIncidencia('externa');break;
- case 'resolver':
-  await resolverIncidencia(b.dataset.id,b.dataset.incidencia);break;
- case 'editar-ofi':
-  editarOFI();break;
- case 'agregar-elemento':
-  agregarElemento();break;
- case 'archivar':{
-  const o=db.ofis.find(o=>o.id===ui.ofiId);
-  if(await confirmar(o.archivada?'Desarchivar OFI':'Archivar OFI',o.archivada?'¿Volver a mostrar esta OFI entre las activas?':'¿Archivar esta OFI? Su avance se conservará.')){
-   cambiar(()=>{o.archivada=!o.archivada;historial(o.id,'',o.archivada?'OFI archivada.':'OFI desarchivada.')},'Cambio guardado.');
-  }
-  break;
- }
- case 'eliminar-ofi':
-  await eliminarOFI();break;
- case 'eliminar-elemento':
-  await eliminarElemento();break;
- case 'resumen':
-  ui.resumenId=b.dataset.id;navegar('mas');break;
- case 'copiar-instruccion':
-  await copiarTexto(TEXTO_CONVERSION);break;
- case 'pegar':
-  try{ui.texto=await navigator.clipboard.readText();$('#textoClaude').value=ui.texto;aviso('Texto pegado. Toca Revisar.')}
-  catch{aviso('Mantén presionado el recuadro y elige Pegar.');$('#textoClaude').focus()}
-  break;
- case 'revisar':
-  if(!ui.texto.trim()){aviso('Primero pega la respuesta de Claude.');break}
-  if(ui.borrador&&!await confirmar('Revisar nuevo texto','¿Reemplazar la vista previa y sus correcciones con el texto pegado?'))break;
-  ui.borrador=leerTexto(ui.texto);render();$('#validacion').scrollIntoView({block:'center'});
-  break;
- case 'manual':
-  if(ui.borrador&&!await confirmar('Crear OFI a mano','¿Descartar la vista previa actual?'))break;
-  ui.borrador={cab:{obra:'',referencia:'',ofi:'',op:'',fecha:fecha(hoy()),color:'',totalCaratula:''},filas:[{ref:'',cant:1,desc:'',revisar:false}],omitidas:[]};
-  render();$('[data-cabecera="obra"]').focus();break;
- case 'agregar-fila':
-  ui.borrador.filas.push({ref:'',cant:1,desc:'',revisar:false});
-  render();document.querySelectorAll('[data-campo="ref"]').item(ui.borrador.filas.length-1).focus();
-  break;
- case 'borrar-fila':
-  if(await confirmar('Borrar fila','¿Borrar esta fila de la vista previa?')){ui.borrador.filas.splice(Number(b.dataset.fila),1);render()}
-  break;
- case 'guardar-ofi':
-  await guardarOFI();break;
- case 'copiar-resumen':
-  await copiarTexto(resumen(ui.resumenId));break;
- case 'compartir-resumen':
-  if(navigator.share){
-   try{await navigator.share({title:'Resumen Mecanizado Tecma',text:resumen(ui.resumenId)})}
-   catch(e){if(e.name!=='AbortError')await copiarTexto(resumen(ui.resumenId))}
-  }else await copiarTexto(resumen(ui.resumenId));
-  break;
- case 'exportar':
-  await exportar();break;
- case 'importar':
-  $('#archivoRespaldo').click();break;
- case 'borrar-todo':
-  await borrarTodo();break;
- case 'instalar':
-  if(eventoInstalar){await eventoInstalar.prompt();eventoInstalar=null;render()}
-  break;
- }
-}
-
-document.addEventListener('click',e=>{
- const b=e.target.closest('button');if(!b||b.disabled)return;
- if(b.dataset.nav)navegar(b.dataset.nav);
- else if(b.dataset.filtro){ui.filtro=b.dataset.filtro;render()}
- else if(b.dataset.contador)contador(b.dataset.contador,b.dataset.tipo,Number(b.dataset.delta));
- else if(b.dataset.motivo){$('#motivoIncidencia').value=b.dataset.motivo}
- else if(b.dataset.accion)accion(b.dataset.accion,b).catch(error=>alert('No se pudo completar la acción. '+error.message));
 });
-document.addEventListener('input',e=>{
- const t=e.target;
- if(t.id==='buscar'){ui.busca=t.value;$('#listaObras').innerHTML=listadoObras()}
- if(t.id==='textoClaude')ui.texto=t.value;
- if(t.dataset.cabecera){
-  ui.borrador.cab[t.dataset.cabecera]=t.value;
-  t.classList.toggle('incierta',t.value.includes('??'));
-  $('#validacion').innerHTML=mensajeValidacion();
- }
- if(t.dataset.campo){
-  const r=ui.borrador.filas[Number(t.dataset.fila)];
-  r[t.dataset.campo]=t.value;
-  if(t.dataset.campo==='cant')r.revisar=!entero(Number(t.value),1);
-  t.classList.toggle('incierta',t.value.includes('??')||t.dataset.campo==='cant'&&r.revisar);
-  t.closest('tr').classList.toggle('incierta',r.revisar);
-  $('#validacion').innerHTML=mensajeValidacion();
- }
- if(['tipoIncidencia','cantidadIncidencia'].includes(t.id))avisoReclasificacion();
- if(t.id==='nota'||t.id==='descripcion'){
-  const e=actual(),campo=t.id==='nota'?'nota':'desc';
-  if(e[campo]!==t.value)cambiar(()=>{
-   e[campo]=t.value;
-   const texto=e.ref+': '+(campo==='nota'?'nota actualizada.':'descripción actualizada.'),ultimo=db.historial.at(-1);
-   if(ultimo?.texto===texto&&ultimo.elementoId===e.id)ultimo.fechaHora=new Date().toISOString();
-   else historial(e.ofiId,e.ref,texto,e.id);
-  },'',false,false,false);
- }
+document.addEventListener('input',e=>{if(e.target.id==='search'){query=e.target.value;searchResults();}if(e.target.id==='paste-text'){preview=null;$('#preview').innerHTML='<p class="muted">Toca Ver carátula para revisar esta respuesta.</p>';}});
+document.addEventListener('change',e=>{if(e.target.id==='restore-file'){readBackup(e.target.files[0]);e.target.value='';}});
+document.addEventListener('submit',e=>{
+  if(e.target.id==='note-form'){e.preventDefault();const text=$('#note-text').value.trim();if(text)updateElement(e=>e.faltas.push({id:uid(),texto:text,fecha:today(),resuelta:false,fechaResuelta:null}));}
+  if(e.target.id==='manual-form'){e.preventDefault();const f=e.target,rows=Array.from(f.querySelectorAll('.manual-row')).map(row=>Object.fromEntries(Array.from(row.querySelectorAll('input')).map(i=>[i.name,i.value])));try{if(!rows.length)throw Error('Agrega al menos un elemento.');const obra=f.elements.obra.value.trim(),ofi=f.elements.ofi.value.trim();if([obra,ofi,...rows.flatMap(r=>[r.ref,r.desc])].some(v=>/[;\r\n]/.test(v)))throw Error('Usa comas en lugar de punto y coma.');preview=parse(`OBRA;${obra}\nOFI;${ofi}\nTOTAL;${rows.reduce((s,r)=>s+Number(r.cant),0)}\n`+rows.map(r=>[r.ref,r.cant,r.desc,r.M,r.H,r.PF].join(';')).join('\n'));importOfi();}catch(err){message('Revisa la carátula',err.message);}}
 });
-document.addEventListener('change',e=>{
- const t=e.target;
- if(t.id==='archivadas'){ui.archivadas=t.checked;render()}
- if(t.id==='ofiResumen'){ui.resumenId=t.value;$('#textoResumen').value=resumen(t.value)}
- if(t.id==='diaHistorial'){
-  const d=fechaISO(t.value);
-  if(!d){alert('Usa una fecha válida con formato dd-mm-aaaa.');t.value=fecha(ui.dia)}
-  else{ui.dia=d;render()}
- }
-});
-$('#archivoRespaldo').onchange=e=>{
- const f=e.target.files[0];e.target.value='';
- importar(f).catch(error=>alert(error.message));
-};
-$('#deshacer').onclick=()=>{
- const fn=undo;undo=null;clearTimeout(temporizador);$('#mensaje').hidden=true;if(fn)fn();
-};
-window.addEventListener('storage',e=>{
- if(e.key!==CLAVE&&e.key!==null)return;
- cerrarDialogo(true);undo=null;$('#mensaje').hidden=true;bloqueado=false;
- cargar();render();aviso('Registro actualizado desde otra pestaña.');
-});
-window.addEventListener('beforeinstallprompt',e=>{
- e.preventDefault();eventoInstalar=e;if(ui.pagina==='mas')render();
-});
-function conexion(){
- $('#conexion').textContent=navigator.onLine?'Registro de producción':'Sin conexión · guardado en este dispositivo';
+addEventListener('storage',e=>{if(e.key!==KEY)return;try{data=e.newValue?validate(JSON.parse(e.newValue)):fresh();close();stopMode=false;render();toast('Avance actualizado');}catch{message('No pude actualizar el avance','Cierra y vuelve a abrir la aplicación.');}});
+render();if(loadError)message('Tu avance necesita revisión',loadError);
+try{navigator.storage?.persist?.().catch(()=>{});}catch{}
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){
+  let waiting=null,reloading=false,requested=false;
+  navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'}).then(reg=>{
+    const show=()=>{if(reg.waiting&&navigator.serviceWorker.controller){waiting=reg.waiting;$('#update').hidden=false;}};
+    show();reg.addEventListener('updatefound',()=>{const worker=reg.installing;worker?.addEventListener('statechange',()=>{if(worker.state==='installed')show();});});
+    $('#update').onclick=()=>{if(waiting){requested=true;waiting.postMessage({type:'SKIP_WAITING'});}};
+    const check=()=>{show();reg.update().catch(()=>{});};check();addEventListener('online',check);document.addEventListener('visibilitychange',()=>{if(!document.hidden)check();});
+  }).catch(()=>toast('Abre la app con internet una vez para preparar el uso sin conexión.'));
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(requested&&!reloading){reloading=true;location.reload();}});
 }
-window.addEventListener('online',conexion);
-window.addEventListener('offline',conexion);
-
-let listoOffline=false;
-async function prepararSW(){
- if(!('serviceWorker' in navigator)||location.protocol==='file:')return;
- try{
-  registroSW=await navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'});
-  const revisar=()=>{$('#actualizacion').hidden=!(registroSW.waiting&&navigator.serviceWorker.controller)};
-  revisar();
-  registroSW.addEventListener('updatefound',()=>{
-   const w=registroSW.installing;
-   w?.addEventListener('statechange',()=>{
-    if(w.state==='installed'){
-     revisar();
-     if(!navigator.serviceWorker.controller)aviso('Aplicación preparada para usar sin conexión.');
-    }
-   });
-  });
-  navigator.serviceWorker.ready.then(()=>{
-   listoOffline=true;
-   if($('#estadoOffline'))$('#estadoOffline').textContent='Preparada para usar sin conexión.';
-  });
-  let recargando=false;
-  navigator.serviceWorker.addEventListener('controllerchange',()=>{
-   if(recargando)return;
-   if(actualizando){recargando=true;location.reload()}
-  });
-  window.addEventListener('focus',()=>registroSW.update().catch(()=>{}));
- }catch{
-  aviso('No se pudo preparar el modo sin conexión. Abre la aplicación publicada con internet e inténtalo otra vez.');
- }
-}
-let actualizando=false;
-$('#actualizacion').onclick=async()=>{
- if($('#dialogo').open){aviso('Termina o cancela el formulario antes de actualizar.');return}
- if(ui.texto||ui.borrador){
-  if(!await confirmar('Actualizar aplicación','Hay una carátula sin guardar. La actualización descartará esa vista previa. ¿Actualizar ahora?'))return;
- }
- if(registroSW?.waiting){
-  actualizando=true;registroSW.waiting.postMessage({type:'SKIP_WAITING'});
- }else location.reload();
-};
-cargar();render();conexion();
-if(navigator.storage?.persist)navigator.storage.persist().catch(()=>{});
-prepararSW();
 </script>
 </body>
 </html>
