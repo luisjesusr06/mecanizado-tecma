@@ -1,30 +1,22 @@
 'use strict';
-
-// Cambia VERSION cada vez que publiques cambios en los archivos.
-const VERSION = 'v1';
-const PREFIX = 'mecanizado-tecma-' + self.registration.scope;
+const VERSION = "v2";
+const PREFIX = 'mecanizado-tecma:' + self.registration.scope + ':';
 const CACHE = PREFIX + VERSION;
-const FILES = ['./', './index.html', './manifest.json', './icon.svg'];
+const INDEX = new URL('./index.html', self.registration.scope).href;
+const FILES = ['./index.html', './manifest.json', './icon.svg'];
+const URLS = FILES.map(file => new URL(file, self.registration.scope).href);
 
 self.addEventListener('install', event => {
-  event.waitUntil((async () => {
-    const cache = await caches.open(CACHE);
-    await cache.addAll(FILES.map(path => new Request(
-      new URL(path, self.registration.scope),
-      { cache: 'reload' }
-    )));
-    // La nueva versión espera a que la persona toque el aviso.
-  })());
+  event.waitUntil(caches.open(CACHE).then(cache =>
+    cache.addAll(URLS.map(url => new Request(url, { cache: 'reload' })))
+  ));
 });
 
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     const keys = await caches.keys();
-    await Promise.all(
-      keys
-        .filter(key => key.startsWith(PREFIX) && key !== CACHE)
-        .map(key => caches.delete(key))
-    );
+    await Promise.all(keys.filter(key => key.startsWith(PREFIX) && key !== CACHE)
+      .map(key => caches.delete(key)));
     await self.clients.claim();
   })());
 });
@@ -34,50 +26,26 @@ self.addEventListener('message', event => {
 });
 
 self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
-
-  if (
-    event.request.method !== 'GET' ||
-    url.origin !== self.location.origin ||
-    !url.href.startsWith(self.registration.scope)
-  ) return;
-
+  if (!url.href.startsWith(self.registration.scope)) return;
+  const navigation = event.request.mode === 'navigate';
+  url.search = '';
+  if (!navigation && !URLS.includes(url.href)) return;
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
-    const path = url.pathname;
-    const scopePath = new URL(self.registration.scope).pathname;
-
-    const isHome =
-      event.request.mode === 'navigate' &&
-      (path === scopePath || path === scopePath + 'index.html');
-
-    const key = isHome
-      ? new URL('./index.html', self.registration.scope).href
-      : event.request;
-
+    const key = navigation ? INDEX : url.href;
     const cached = await cache.match(key);
     if (cached) return cached;
-
     try {
-      const response = await fetch(event.request);
-
-      if (response.ok && response.type === 'basic') {
-        try {
-          await cache.put(key, response.clone());
-        } catch {}
-      }
-
+      const response = await fetch(navigation ? INDEX : event.request);
+      if (response.ok) await cache.put(key, response.clone());
       return response;
     } catch {
-      return new Response(
-        'Sin conexión. Abre la aplicación con internet una primera vez.',
-        {
-          status: 503,
-          headers: {
-            'Content-Type': 'text/plain; charset=utf-8'
-          }
-        }
-      );
+      return new Response('Abre Mecanizado Tecma con internet una vez y vuelve a intentarlo.', {
+        status: 503,
+        headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+      });
     }
   })());
 });
